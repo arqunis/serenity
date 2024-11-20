@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["collect"],"struct":["ComponentInteractionCollector","MessageCollector","ModalInteractionCollector","ReactionCollector"]};
