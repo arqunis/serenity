@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/http/client.rs`."><title>client.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.0-nightly (ee612c45f 2024-11-19)" data-channel="nightly" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../../static.files/storage-59e33391.js"></script><script defer src="../../../static.files/src-script-56102188.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/http/</div>client.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/http/client.rs`."><title>client.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.0-nightly (b19329a37 2024-11-21)" data-channel="nightly" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../../static.files/storage-59e33391.js"></script><script defer src="../../../static.files/src-script-56102188.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/http/</div>client.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
 <a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -4446,14 +4446,18 @@
 <a href="#4445" id="4445">4445</a>
 <a href="#4446" id="4446">4446</a>
 <a href="#4447" id="4447">4447</a>
-<a href="#4448" id="4448">4448</a></pre></div><pre class="rust"><code><span class="attr">#![allow(clippy::missing_errors_doc)]
+<a href="#4448" id="4448">4448</a>
+<a href="#4449" id="4449">4449</a>
+<a href="#4450" id="4450">4450</a>
+<a href="#4451" id="4451">4451</a>
+<a href="#4452" id="4452">4452</a>
+<a href="#4453" id="4453">4453</a>
+<a href="#4454" id="4454">4454</a></pre></div><pre class="rust"><code><span class="attr">#![allow(clippy::missing_errors_doc)]
 
 </span><span class="kw">use </span>std::borrow::Cow;
 <span class="kw">use </span>std::cell::Cell;
 <span class="kw">use </span>std::sync::atomic::{AtomicU64, Ordering};
-<span class="kw">use </span>std::sync::Arc;
 
-<span class="kw">use </span>aformat::{aformat, CapStr};
 <span class="kw">use </span>arrayvec::ArrayVec;
 <span class="kw">use </span>nonmax::{NonMaxU16, NonMaxU8};
 <span class="kw">use </span>percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
@@ -4519,8 +4523,10 @@
 /// ```rust
 /// # use serenity::http::HttpBuilder;
 /// # fn run() {
-/// let http =
-///     HttpBuilder::new("token").proxy("http://127.0.0.1:3000").ratelimiter_disabled(true).build();
+/// let http = HttpBuilder::without_token()
+///     .proxy("http://127.0.0.1:3000")
+///     .ratelimiter_disabled(true)
+///     .build();
 /// # }
 /// ```
 </span><span class="attr">#[must_use]
@@ -4528,21 +4534,36 @@
     client: <span class="prelude-ty">Option</span>&lt;Client&gt;,
     ratelimiter: <span class="prelude-ty">Option</span>&lt;Ratelimiter&gt;,
     ratelimiter_disabled: bool,
-    token: Arc&lt;str&gt;,
+    token: <span class="prelude-ty">Option</span>&lt;Token&gt;,
     proxy: <span class="prelude-ty">Option</span>&lt;FixedString&lt;u16&gt;&gt;,
     application_id: <span class="prelude-ty">Option</span>&lt;ApplicationId&gt;,
     default_allowed_mentions: <span class="prelude-ty">Option</span>&lt;CreateAllowedMentions&lt;<span class="lifetime">'static</span>&gt;&gt;,
 }
 
 <span class="kw">impl </span>HttpBuilder {
-    <span class="doccomment">/// Construct a new builder to call methods on for the HTTP construction. The `token` will
-    /// automatically be prefixed "Bot " if not already.
-    </span><span class="kw">pub fn </span>new(token: <span class="kw-2">&amp;</span>str) -&gt; <span class="self">Self </span>{
+    <span class="doccomment">/// Construct a new builder.
+    </span><span class="kw">pub fn </span>new(token: Token) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             client: <span class="prelude-val">None</span>,
             ratelimiter: <span class="prelude-val">None</span>,
             ratelimiter_disabled: <span class="bool-val">false</span>,
-            token: parse_token(token),
+            token: <span class="prelude-val">Some</span>(token),
+            proxy: <span class="prelude-val">None</span>,
+            application_id: <span class="prelude-val">None</span>,
+            default_allowed_mentions: <span class="prelude-val">None</span>,
+        }
+    }
+
+    <span class="doccomment">/// Construct a new builder without a token set.
+    ///
+    /// Most Discord functionality requires a logged-in Bot token, but there are some exceptions
+    /// such as webhook endpoints.
+    </span><span class="kw">pub fn </span>without_token() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            client: <span class="prelude-val">None</span>,
+            ratelimiter: <span class="prelude-val">None</span>,
+            ratelimiter_disabled: <span class="bool-val">false</span>,
+            token: <span class="prelude-val">None</span>,
             proxy: <span class="prelude-val">None</span>,
             application_id: <span class="prelude-val">None</span>,
             default_allowed_mentions: <span class="prelude-val">None</span>,
@@ -4552,13 +4573,6 @@
     <span class="doccomment">/// Sets the application_id to use interactions.
     </span><span class="kw">pub fn </span>application_id(<span class="kw-2">mut </span><span class="self">self</span>, application_id: ApplicationId) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.application_id = <span class="prelude-val">Some</span>(application_id);
-        <span class="self">self
-    </span>}
-
-    <span class="doccomment">/// Sets a token for the bot. If the token is not prefixed "Bot ", this method will
-    /// automatically do so.
-    </span><span class="kw">pub fn </span>token(<span class="kw-2">mut </span><span class="self">self</span>, token: <span class="kw-2">&amp;</span>str) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.token = parse_token(token);
         <span class="self">self
     </span>}
 
@@ -4640,28 +4654,17 @@
         });
 
         <span class="kw">let </span>ratelimiter = (!<span class="self">self</span>.ratelimiter_disabled).then(|| {
-            <span class="self">self</span>.ratelimiter
-                .unwrap_or_else(|| Ratelimiter::new(client.clone(), Arc::clone(<span class="kw-2">&amp;</span><span class="self">self</span>.token)))
+            <span class="self">self</span>.ratelimiter.unwrap_or_else(|| Ratelimiter::new(client.clone(), <span class="self">self</span>.token.clone()))
         });
 
         Http {
             client,
             ratelimiter,
             proxy: <span class="self">self</span>.proxy,
-            token: SecretString::new(<span class="self">self</span>.token),
+            token: <span class="self">self</span>.token,
             application_id,
             default_allowed_mentions: <span class="self">self</span>.default_allowed_mentions,
         }
-    }
-}
-
-<span class="kw">fn </span>parse_token(token: <span class="kw-2">&amp;</span>str) -&gt; Arc&lt;str&gt; {
-    <span class="kw">let </span>token = token.trim();
-
-    <span class="kw">if </span>token.starts_with(<span class="string">"Bot "</span>) || token.starts_with(<span class="string">"Bearer "</span>) {
-        Arc::from(token)
-    } <span class="kw">else </span>{
-        Arc::from(<span class="macro">aformat!</span>(<span class="string">"Bot {}"</span>, CapStr::&lt;<span class="number">128</span>&gt;(token)).as_str())
     }
 }
 
@@ -4689,15 +4692,25 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) client: Client,
     <span class="kw">pub </span>ratelimiter: <span class="prelude-ty">Option</span>&lt;Ratelimiter&gt;,
     <span class="kw">pub </span>proxy: <span class="prelude-ty">Option</span>&lt;FixedString&lt;u16&gt;&gt;,
-    token: SecretString,
+    token: <span class="prelude-ty">Option</span>&lt;Token&gt;,
     application_id: AtomicU64,
     <span class="kw">pub </span>default_allowed_mentions: <span class="prelude-ty">Option</span>&lt;CreateAllowedMentions&lt;<span class="lifetime">'static</span>&gt;&gt;,
 }
 
 <span class="kw">impl </span>Http {
-    <span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>new(token: <span class="kw-2">&amp;</span>str) -&gt; <span class="self">Self </span>{
+    <span class="doccomment">/// Construct an authorized HTTP client.
+    </span><span class="attr">#[must_use]
+    </span><span class="kw">pub fn </span>new(token: Token) -&gt; <span class="self">Self </span>{
         HttpBuilder::new(token).build()
+    }
+
+    <span class="doccomment">/// Construct an unauthorized HTTP client, with no token.
+    ///
+    /// Most Discord functionality requires a logged-in Bot token, but there are some exceptions
+    /// such as webhook endpoints.
+    </span><span class="attr">#[must_use]
+    </span><span class="kw">pub fn </span>without_token() -&gt; <span class="self">Self </span>{
+        HttpBuilder::without_token().build()
     }
 
     <span class="kw">pub fn </span>application_id(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;ApplicationId&gt; {
@@ -4715,11 +4728,6 @@
 
     <span class="kw">pub fn </span>set_application_id(<span class="kw-2">&amp;</span><span class="self">self</span>, application_id: ApplicationId) {
         <span class="self">self</span>.application_id.store(application_id.get(), Ordering::Relaxed);
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">"gateway"</span>)]
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; SecretString {
-        <span class="self">self</span>.token.clone()
     }
 
     <span class="doccomment">/// Adds a [`User`] to a [`Guild`] with a valid OAuth2 access token.
@@ -8845,7 +8853,11 @@
             ratelimiter.perform(req).<span class="kw">await</span><span class="question-mark">?
         </span>} <span class="kw">else </span>{
             <span class="kw">let </span>request = req
-                .build(<span class="kw-2">&amp;</span><span class="self">self</span>.client, <span class="self">self</span>.token.expose_secret(), <span class="self">self</span>.proxy.as_deref())<span class="question-mark">?
+                .build(
+                    <span class="kw-2">&amp;</span><span class="self">self</span>.client,
+                    <span class="self">self</span>.token.as_ref().map(Token::expose_secret),
+                    <span class="self">self</span>.proxy.as_deref(),
+                )<span class="question-mark">?
                 </span>.build()<span class="question-mark">?</span>;
             <span class="self">self</span>.client.execute(request).<span class="kw">await</span><span class="question-mark">?
         </span>};
