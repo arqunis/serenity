@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/guild/audit_log/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.0-nightly (b19329a37 2024-11-21)" data-channel="nightly" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../../../../static.files/storage-59e33391.js"></script><script defer src="../../../../../static.files/src-script-56102188.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/guild/audit_log/</div>mod.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/guild/audit_log/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.85.0-nightly (dff3e7ccd 2024-11-26)" data-channel="nightly" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../../../../static.files/storage-59e33391.js"></script><script defer src="../../../../../static.files/src-script-56102188.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/guild/audit_log/</div>mod.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
 <a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -508,23 +508,7 @@
 <a href="#507" id="507">507</a>
 <a href="#508" id="508">508</a>
 <a href="#509" id="509">509</a>
-<a href="#510" id="510">510</a>
-<a href="#511" id="511">511</a>
-<a href="#512" id="512">512</a>
-<a href="#513" id="513">513</a>
-<a href="#514" id="514">514</a>
-<a href="#515" id="515">515</a>
-<a href="#516" id="516">516</a>
-<a href="#517" id="517">517</a>
-<a href="#518" id="518">518</a>
-<a href="#519" id="519">519</a>
-<a href="#520" id="520">520</a>
-<a href="#521" id="521">521</a>
-<a href="#522" id="522">522</a>
-<a href="#523" id="523">523</a>
-<a href="#524" id="524">524</a>
-<a href="#525" id="525">525</a>
-<a href="#526" id="526">526</a></pre></div><pre class="rust"><code><span class="doccomment">//! Audit log types for administrative actions within guilds.
+<a href="#510" id="510">510</a></pre></div><pre class="rust"><code><span class="doccomment">//! Audit log types for administrative actions within guilds.
 
 </span><span class="kw">use </span>nonmax::{NonMaxU32, NonMaxU64};
 <span class="kw">use </span>serde::ser::{Serialize, Serializer};
@@ -561,36 +545,36 @@
     AutoMod(AutoModAction),
     CreatorMonetization(CreatorMonetizationAction),
     VoiceChannelStatus(VoiceChannelStatusAction),
-    Unknown(u8),
+    Unknown(u16),
 }
 
 <span class="kw">impl </span>Action {
     <span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>num(<span class="self">self</span>) -&gt; u8 {
+    </span><span class="kw">pub const fn </span>num(<span class="self">self</span>) -&gt; u16 {
         <span class="kw">match </span><span class="self">self </span>{
             <span class="self">Self</span>::GuildUpdate =&gt; <span class="number">1</span>,
-            <span class="self">Self</span>::Channel(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::ChannelOverwrite(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::Member(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::Role(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::Invite(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::Webhook(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::Emoji(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::Message(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::Integration(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::StageInstance(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::Sticker(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::ScheduledEvent(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::Thread(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::AutoMod(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::CreatorMonetization(x) =&gt; x <span class="kw">as </span>u8,
-            <span class="self">Self</span>::VoiceChannelStatus(x) =&gt; x <span class="kw">as </span>u8,
+            <span class="self">Self</span>::Channel(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::ChannelOverwrite(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::Member(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::Role(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::Invite(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::Webhook(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::Emoji(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::Message(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::Integration(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::StageInstance(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::Sticker(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::ScheduledEvent(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::Thread(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::AutoMod(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::CreatorMonetization(x) =&gt; x <span class="kw">as </span>u16,
+            <span class="self">Self</span>::VoiceChannelStatus(x) =&gt; x <span class="kw">as </span>u16,
             <span class="self">Self</span>::Unknown(x) =&gt; x,
         }
     }
 
     <span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>from_value(value: u8) -&gt; Action {
+    </span><span class="kw">pub fn </span>from_value(value: u16) -&gt; Action {
         <span class="kw">match </span>value {
             <span class="number">1 </span>=&gt; Action::GuildUpdate,
             <span class="number">10 </span>=&gt; Action::Channel(ChannelAction::Create),
@@ -657,14 +641,14 @@
 <span class="comment">// Manual impl needed to emulate integer enum tags
 </span><span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>Action {
     <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(deserializer: D) -&gt; StdResult&lt;<span class="self">Self</span>, D::Error&gt; {
-        <span class="kw">let </span>value = u8::deserialize(deserializer)<span class="question-mark">?</span>;
+        <span class="kw">let </span>value = u16::deserialize(deserializer)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(Action::from_value(value))
     }
 }
 
 <span class="kw">impl </span>Serialize <span class="kw">for </span>Action {
     <span class="kw">fn </span>serialize&lt;S: Serializer&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, serializer: S) -&gt; StdResult&lt;S::Ok, S::Error&gt; {
-        serializer.serialize_u8(<span class="self">self</span>.num())
+        serializer.serialize_u16(<span class="self">self</span>.num())
     }
 }
 
@@ -672,7 +656,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>ChannelAction {
     Create = <span class="number">10</span>,
     Update = <span class="number">11</span>,
@@ -683,7 +666,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>ChannelOverwriteAction {
     Create = <span class="number">13</span>,
     Update = <span class="number">14</span>,
@@ -694,7 +676,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>MemberAction {
     Kick = <span class="number">20</span>,
     Prune = <span class="number">21</span>,
@@ -711,7 +692,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>RoleAction {
     Create = <span class="number">30</span>,
     Update = <span class="number">31</span>,
@@ -722,7 +702,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>InviteAction {
     Create = <span class="number">40</span>,
     Update = <span class="number">41</span>,
@@ -733,7 +712,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>WebhookAction {
     Create = <span class="number">50</span>,
     Update = <span class="number">51</span>,
@@ -744,7 +722,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>EmojiAction {
     Create = <span class="number">60</span>,
     Update = <span class="number">61</span>,
@@ -755,7 +732,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>MessageAction {
     Delete = <span class="number">72</span>,
     BulkDelete = <span class="number">73</span>,
@@ -767,7 +743,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>IntegrationAction {
     Create = <span class="number">80</span>,
     Update = <span class="number">81</span>,
@@ -778,7 +753,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>StageInstanceAction {
     Create = <span class="number">83</span>,
     Update = <span class="number">84</span>,
@@ -789,7 +763,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>StickerAction {
     Create = <span class="number">90</span>,
     Update = <span class="number">91</span>,
@@ -800,7 +773,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>ScheduledEventAction {
     Create = <span class="number">100</span>,
     Update = <span class="number">101</span>,
@@ -811,7 +783,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>ThreadAction {
     Create = <span class="number">110</span>,
     Update = <span class="number">111</span>,
@@ -822,7 +793,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Copy, Clone, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>AutoModAction {
     RuleCreate = <span class="number">140</span>,
     RuleUpdate = <span class="number">141</span>,
@@ -836,7 +806,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Copy, Clone, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>CreatorMonetizationAction {
     RequestCreated = <span class="number">150</span>,
     TermsAccepted = <span class="number">151</span>,
@@ -846,7 +815,6 @@
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Copy, Clone, Debug)]
 #[non_exhaustive]
-#[repr(u8)]
 </span><span class="kw">pub enum </span>VoiceChannelStatusAction {
     StatusUpdate = <span class="number">192</span>,
     StatusDelete = <span class="number">193</span>,
