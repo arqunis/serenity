@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["collect"],"struct":["ComponentInteractionCollector","MessageCollector","ModalInteractionCollector","ReactionCollector"]};
+window.SIDEBAR_ITEMS = {"fn":["collect"],"struct":["ComponentInteractionCollector","CreateQuickModal","MessageCollector","ModalInteractionCollector","QuickModalResponse","ReactionCollector"],"trait":["CollectComponentInteractions","CollectMessages","CollectModalInteractions","CollectReactions","QuickModal"]};

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/permissions.rs`."><title>permissions.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.85.0-nightly (dff3e7ccd 2024-11-26)" data-channel="nightly" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../../static.files/storage-59e33391.js"></script><script defer src="../../../static.files/src-script-56102188.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/</div>permissions.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/permissions.rs`."><title>permissions.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-46132b98.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.85.0-nightly (9c707a8b7 2024-12-07)" data-channel="nightly" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../../static.files/storage-59e33391.js"></script><script defer src="../../../static.files/src-script-56102188.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/</div>permissions.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
 <a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -485,399 +485,7 @@
 <a href="#484" id="484">484</a>
 <a href="#485" id="485">485</a>
 <a href="#486" id="486">486</a>
-<a href="#487" id="487">487</a>
-<a href="#488" id="488">488</a>
-<a href="#489" id="489">489</a>
-<a href="#490" id="490">490</a>
-<a href="#491" id="491">491</a>
-<a href="#492" id="492">492</a>
-<a href="#493" id="493">493</a>
-<a href="#494" id="494">494</a>
-<a href="#495" id="495">495</a>
-<a href="#496" id="496">496</a>
-<a href="#497" id="497">497</a>
-<a href="#498" id="498">498</a>
-<a href="#499" id="499">499</a>
-<a href="#500" id="500">500</a>
-<a href="#501" id="501">501</a>
-<a href="#502" id="502">502</a>
-<a href="#503" id="503">503</a>
-<a href="#504" id="504">504</a>
-<a href="#505" id="505">505</a>
-<a href="#506" id="506">506</a>
-<a href="#507" id="507">507</a>
-<a href="#508" id="508">508</a>
-<a href="#509" id="509">509</a>
-<a href="#510" id="510">510</a>
-<a href="#511" id="511">511</a>
-<a href="#512" id="512">512</a>
-<a href="#513" id="513">513</a>
-<a href="#514" id="514">514</a>
-<a href="#515" id="515">515</a>
-<a href="#516" id="516">516</a>
-<a href="#517" id="517">517</a>
-<a href="#518" id="518">518</a>
-<a href="#519" id="519">519</a>
-<a href="#520" id="520">520</a>
-<a href="#521" id="521">521</a>
-<a href="#522" id="522">522</a>
-<a href="#523" id="523">523</a>
-<a href="#524" id="524">524</a>
-<a href="#525" id="525">525</a>
-<a href="#526" id="526">526</a>
-<a href="#527" id="527">527</a>
-<a href="#528" id="528">528</a>
-<a href="#529" id="529">529</a>
-<a href="#530" id="530">530</a>
-<a href="#531" id="531">531</a>
-<a href="#532" id="532">532</a>
-<a href="#533" id="533">533</a>
-<a href="#534" id="534">534</a>
-<a href="#535" id="535">535</a>
-<a href="#536" id="536">536</a>
-<a href="#537" id="537">537</a>
-<a href="#538" id="538">538</a>
-<a href="#539" id="539">539</a>
-<a href="#540" id="540">540</a>
-<a href="#541" id="541">541</a>
-<a href="#542" id="542">542</a>
-<a href="#543" id="543">543</a>
-<a href="#544" id="544">544</a>
-<a href="#545" id="545">545</a>
-<a href="#546" id="546">546</a>
-<a href="#547" id="547">547</a>
-<a href="#548" id="548">548</a>
-<a href="#549" id="549">549</a>
-<a href="#550" id="550">550</a>
-<a href="#551" id="551">551</a>
-<a href="#552" id="552">552</a>
-<a href="#553" id="553">553</a>
-<a href="#554" id="554">554</a>
-<a href="#555" id="555">555</a>
-<a href="#556" id="556">556</a>
-<a href="#557" id="557">557</a>
-<a href="#558" id="558">558</a>
-<a href="#559" id="559">559</a>
-<a href="#560" id="560">560</a>
-<a href="#561" id="561">561</a>
-<a href="#562" id="562">562</a>
-<a href="#563" id="563">563</a>
-<a href="#564" id="564">564</a>
-<a href="#565" id="565">565</a>
-<a href="#566" id="566">566</a>
-<a href="#567" id="567">567</a>
-<a href="#568" id="568">568</a>
-<a href="#569" id="569">569</a>
-<a href="#570" id="570">570</a>
-<a href="#571" id="571">571</a>
-<a href="#572" id="572">572</a>
-<a href="#573" id="573">573</a>
-<a href="#574" id="574">574</a>
-<a href="#575" id="575">575</a>
-<a href="#576" id="576">576</a>
-<a href="#577" id="577">577</a>
-<a href="#578" id="578">578</a>
-<a href="#579" id="579">579</a>
-<a href="#580" id="580">580</a>
-<a href="#581" id="581">581</a>
-<a href="#582" id="582">582</a>
-<a href="#583" id="583">583</a>
-<a href="#584" id="584">584</a>
-<a href="#585" id="585">585</a>
-<a href="#586" id="586">586</a>
-<a href="#587" id="587">587</a>
-<a href="#588" id="588">588</a>
-<a href="#589" id="589">589</a>
-<a href="#590" id="590">590</a>
-<a href="#591" id="591">591</a>
-<a href="#592" id="592">592</a>
-<a href="#593" id="593">593</a>
-<a href="#594" id="594">594</a>
-<a href="#595" id="595">595</a>
-<a href="#596" id="596">596</a>
-<a href="#597" id="597">597</a>
-<a href="#598" id="598">598</a>
-<a href="#599" id="599">599</a>
-<a href="#600" id="600">600</a>
-<a href="#601" id="601">601</a>
-<a href="#602" id="602">602</a>
-<a href="#603" id="603">603</a>
-<a href="#604" id="604">604</a>
-<a href="#605" id="605">605</a>
-<a href="#606" id="606">606</a>
-<a href="#607" id="607">607</a>
-<a href="#608" id="608">608</a>
-<a href="#609" id="609">609</a>
-<a href="#610" id="610">610</a>
-<a href="#611" id="611">611</a>
-<a href="#612" id="612">612</a>
-<a href="#613" id="613">613</a>
-<a href="#614" id="614">614</a>
-<a href="#615" id="615">615</a>
-<a href="#616" id="616">616</a>
-<a href="#617" id="617">617</a>
-<a href="#618" id="618">618</a>
-<a href="#619" id="619">619</a>
-<a href="#620" id="620">620</a>
-<a href="#621" id="621">621</a>
-<a href="#622" id="622">622</a>
-<a href="#623" id="623">623</a>
-<a href="#624" id="624">624</a>
-<a href="#625" id="625">625</a>
-<a href="#626" id="626">626</a>
-<a href="#627" id="627">627</a>
-<a href="#628" id="628">628</a>
-<a href="#629" id="629">629</a>
-<a href="#630" id="630">630</a>
-<a href="#631" id="631">631</a>
-<a href="#632" id="632">632</a>
-<a href="#633" id="633">633</a>
-<a href="#634" id="634">634</a>
-<a href="#635" id="635">635</a>
-<a href="#636" id="636">636</a>
-<a href="#637" id="637">637</a>
-<a href="#638" id="638">638</a>
-<a href="#639" id="639">639</a>
-<a href="#640" id="640">640</a>
-<a href="#641" id="641">641</a>
-<a href="#642" id="642">642</a>
-<a href="#643" id="643">643</a>
-<a href="#644" id="644">644</a>
-<a href="#645" id="645">645</a>
-<a href="#646" id="646">646</a>
-<a href="#647" id="647">647</a>
-<a href="#648" id="648">648</a>
-<a href="#649" id="649">649</a>
-<a href="#650" id="650">650</a>
-<a href="#651" id="651">651</a>
-<a href="#652" id="652">652</a>
-<a href="#653" id="653">653</a>
-<a href="#654" id="654">654</a>
-<a href="#655" id="655">655</a>
-<a href="#656" id="656">656</a>
-<a href="#657" id="657">657</a>
-<a href="#658" id="658">658</a>
-<a href="#659" id="659">659</a>
-<a href="#660" id="660">660</a>
-<a href="#661" id="661">661</a>
-<a href="#662" id="662">662</a>
-<a href="#663" id="663">663</a>
-<a href="#664" id="664">664</a>
-<a href="#665" id="665">665</a>
-<a href="#666" id="666">666</a>
-<a href="#667" id="667">667</a>
-<a href="#668" id="668">668</a>
-<a href="#669" id="669">669</a>
-<a href="#670" id="670">670</a>
-<a href="#671" id="671">671</a>
-<a href="#672" id="672">672</a>
-<a href="#673" id="673">673</a>
-<a href="#674" id="674">674</a>
-<a href="#675" id="675">675</a>
-<a href="#676" id="676">676</a>
-<a href="#677" id="677">677</a>
-<a href="#678" id="678">678</a>
-<a href="#679" id="679">679</a>
-<a href="#680" id="680">680</a>
-<a href="#681" id="681">681</a>
-<a href="#682" id="682">682</a>
-<a href="#683" id="683">683</a>
-<a href="#684" id="684">684</a>
-<a href="#685" id="685">685</a>
-<a href="#686" id="686">686</a>
-<a href="#687" id="687">687</a>
-<a href="#688" id="688">688</a>
-<a href="#689" id="689">689</a>
-<a href="#690" id="690">690</a>
-<a href="#691" id="691">691</a>
-<a href="#692" id="692">692</a>
-<a href="#693" id="693">693</a>
-<a href="#694" id="694">694</a>
-<a href="#695" id="695">695</a>
-<a href="#696" id="696">696</a>
-<a href="#697" id="697">697</a>
-<a href="#698" id="698">698</a>
-<a href="#699" id="699">699</a>
-<a href="#700" id="700">700</a>
-<a href="#701" id="701">701</a>
-<a href="#702" id="702">702</a>
-<a href="#703" id="703">703</a>
-<a href="#704" id="704">704</a>
-<a href="#705" id="705">705</a>
-<a href="#706" id="706">706</a>
-<a href="#707" id="707">707</a>
-<a href="#708" id="708">708</a>
-<a href="#709" id="709">709</a>
-<a href="#710" id="710">710</a>
-<a href="#711" id="711">711</a>
-<a href="#712" id="712">712</a>
-<a href="#713" id="713">713</a>
-<a href="#714" id="714">714</a>
-<a href="#715" id="715">715</a>
-<a href="#716" id="716">716</a>
-<a href="#717" id="717">717</a>
-<a href="#718" id="718">718</a>
-<a href="#719" id="719">719</a>
-<a href="#720" id="720">720</a>
-<a href="#721" id="721">721</a>
-<a href="#722" id="722">722</a>
-<a href="#723" id="723">723</a>
-<a href="#724" id="724">724</a>
-<a href="#725" id="725">725</a>
-<a href="#726" id="726">726</a>
-<a href="#727" id="727">727</a>
-<a href="#728" id="728">728</a>
-<a href="#729" id="729">729</a>
-<a href="#730" id="730">730</a>
-<a href="#731" id="731">731</a>
-<a href="#732" id="732">732</a>
-<a href="#733" id="733">733</a>
-<a href="#734" id="734">734</a>
-<a href="#735" id="735">735</a>
-<a href="#736" id="736">736</a>
-<a href="#737" id="737">737</a>
-<a href="#738" id="738">738</a>
-<a href="#739" id="739">739</a>
-<a href="#740" id="740">740</a>
-<a href="#741" id="741">741</a>
-<a href="#742" id="742">742</a>
-<a href="#743" id="743">743</a>
-<a href="#744" id="744">744</a>
-<a href="#745" id="745">745</a>
-<a href="#746" id="746">746</a>
-<a href="#747" id="747">747</a>
-<a href="#748" id="748">748</a>
-<a href="#749" id="749">749</a>
-<a href="#750" id="750">750</a>
-<a href="#751" id="751">751</a>
-<a href="#752" id="752">752</a>
-<a href="#753" id="753">753</a>
-<a href="#754" id="754">754</a>
-<a href="#755" id="755">755</a>
-<a href="#756" id="756">756</a>
-<a href="#757" id="757">757</a>
-<a href="#758" id="758">758</a>
-<a href="#759" id="759">759</a>
-<a href="#760" id="760">760</a>
-<a href="#761" id="761">761</a>
-<a href="#762" id="762">762</a>
-<a href="#763" id="763">763</a>
-<a href="#764" id="764">764</a>
-<a href="#765" id="765">765</a>
-<a href="#766" id="766">766</a>
-<a href="#767" id="767">767</a>
-<a href="#768" id="768">768</a>
-<a href="#769" id="769">769</a>
-<a href="#770" id="770">770</a>
-<a href="#771" id="771">771</a>
-<a href="#772" id="772">772</a>
-<a href="#773" id="773">773</a>
-<a href="#774" id="774">774</a>
-<a href="#775" id="775">775</a>
-<a href="#776" id="776">776</a>
-<a href="#777" id="777">777</a>
-<a href="#778" id="778">778</a>
-<a href="#779" id="779">779</a>
-<a href="#780" id="780">780</a>
-<a href="#781" id="781">781</a>
-<a href="#782" id="782">782</a>
-<a href="#783" id="783">783</a>
-<a href="#784" id="784">784</a>
-<a href="#785" id="785">785</a>
-<a href="#786" id="786">786</a>
-<a href="#787" id="787">787</a>
-<a href="#788" id="788">788</a>
-<a href="#789" id="789">789</a>
-<a href="#790" id="790">790</a>
-<a href="#791" id="791">791</a>
-<a href="#792" id="792">792</a>
-<a href="#793" id="793">793</a>
-<a href="#794" id="794">794</a>
-<a href="#795" id="795">795</a>
-<a href="#796" id="796">796</a>
-<a href="#797" id="797">797</a>
-<a href="#798" id="798">798</a>
-<a href="#799" id="799">799</a>
-<a href="#800" id="800">800</a>
-<a href="#801" id="801">801</a>
-<a href="#802" id="802">802</a>
-<a href="#803" id="803">803</a>
-<a href="#804" id="804">804</a>
-<a href="#805" id="805">805</a>
-<a href="#806" id="806">806</a>
-<a href="#807" id="807">807</a>
-<a href="#808" id="808">808</a>
-<a href="#809" id="809">809</a>
-<a href="#810" id="810">810</a>
-<a href="#811" id="811">811</a>
-<a href="#812" id="812">812</a>
-<a href="#813" id="813">813</a>
-<a href="#814" id="814">814</a>
-<a href="#815" id="815">815</a>
-<a href="#816" id="816">816</a>
-<a href="#817" id="817">817</a>
-<a href="#818" id="818">818</a>
-<a href="#819" id="819">819</a>
-<a href="#820" id="820">820</a>
-<a href="#821" id="821">821</a>
-<a href="#822" id="822">822</a>
-<a href="#823" id="823">823</a>
-<a href="#824" id="824">824</a>
-<a href="#825" id="825">825</a>
-<a href="#826" id="826">826</a>
-<a href="#827" id="827">827</a>
-<a href="#828" id="828">828</a>
-<a href="#829" id="829">829</a>
-<a href="#830" id="830">830</a>
-<a href="#831" id="831">831</a>
-<a href="#832" id="832">832</a>
-<a href="#833" id="833">833</a>
-<a href="#834" id="834">834</a>
-<a href="#835" id="835">835</a>
-<a href="#836" id="836">836</a>
-<a href="#837" id="837">837</a>
-<a href="#838" id="838">838</a>
-<a href="#839" id="839">839</a>
-<a href="#840" id="840">840</a>
-<a href="#841" id="841">841</a>
-<a href="#842" id="842">842</a>
-<a href="#843" id="843">843</a>
-<a href="#844" id="844">844</a>
-<a href="#845" id="845">845</a>
-<a href="#846" id="846">846</a>
-<a href="#847" id="847">847</a>
-<a href="#848" id="848">848</a>
-<a href="#849" id="849">849</a>
-<a href="#850" id="850">850</a>
-<a href="#851" id="851">851</a>
-<a href="#852" id="852">852</a>
-<a href="#853" id="853">853</a>
-<a href="#854" id="854">854</a>
-<a href="#855" id="855">855</a>
-<a href="#856" id="856">856</a>
-<a href="#857" id="857">857</a>
-<a href="#858" id="858">858</a>
-<a href="#859" id="859">859</a>
-<a href="#860" id="860">860</a>
-<a href="#861" id="861">861</a>
-<a href="#862" id="862">862</a>
-<a href="#863" id="863">863</a>
-<a href="#864" id="864">864</a>
-<a href="#865" id="865">865</a>
-<a href="#866" id="866">866</a>
-<a href="#867" id="867">867</a>
-<a href="#868" id="868">868</a>
-<a href="#869" id="869">869</a>
-<a href="#870" id="870">870</a>
-<a href="#871" id="871">871</a>
-<a href="#872" id="872">872</a>
-<a href="#873" id="873">873</a>
-<a href="#874" id="874">874</a>
-<a href="#875" id="875">875</a>
-<a href="#876" id="876">876</a>
-<a href="#877" id="877">877</a>
-<a href="#878" id="878">878</a>
-<a href="#879" id="879">879</a></pre></div><pre class="rust"><code><span class="doccomment">//! A set of permissions for a role or user. These can be assigned directly to a role or as a
+<a href="#487" id="487">487</a></pre></div><pre class="rust"><code><span class="doccomment">//! A set of permissions for a role or user. These can be assigned directly to a role or as a
 //! channel's permission overrides.
 //!
 //! For convenience, methods for each permission are available, which can be used to test if the
@@ -922,51 +530,94 @@
 
 <span class="kw">use </span><span class="kw">super</span>::utils::StrOrInt;
 
-<span class="doccomment">/// This macro generates the [`Permissions::get_permission_names`] method.
+<span class="doccomment">/// This macro generates the `Permissions` type and methods.
 ///
 /// It is invoked by passing the names of all methods used to check for permissions along with
-/// their names displayed inside Discord.
+/// their names displayed inside Discord, and their value.
 ///
 /// ## Examples
 ///
 /// Using this macro
 ///
 /// ```ignore
-/// generate_get_permission_names! {
-///     add_reactions: "Add Reactions",
-///     administrator: "Administrator"
+/// generate_permissions! {
+///     /// Allows adding reactions to messages in channels.
+///     ADD_REACTIONS, add_reaction, "Add Reactions" = 1 &lt;&lt; 6;
 /// };
 /// ```
 ///
 /// Generates this implementation:
 ///
 /// ```ignore
+/// bitflags::bitflags!(
+///     impl Permissions: u64 {
+///         /// Allows adding reactions to messages in channels.
+///         const ADD_REACTIONS = 1 &lt;&lt; 6;
+///     }
+/// )
+///
 /// impl Permissions {
+///     fn add_reactions(self) -&gt; bool {
+///         self.contains(Self::ADD_REACTIONS);
+///     }
+///
 ///     fn get_permission_names(self) -&gt; Vec&lt;&amp;'static str&gt; {
 ///         let mut names = Vec::new();
 ///
 ///         if self.add_reactions() {
 ///             names.push("Add Reactions");
 ///         }
-///         if self.administrator() {
-///             names.push("Administrator");
-///         }
 ///
 ///         names
 ///     }
 /// }
 /// ```
-</span><span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
-</span><span class="macro">macro_rules!</span> generate_get_permission_names {
-    {$ (<span class="macro-nonterminal">$perm</span>:ident: <span class="macro-nonterminal">$name</span>:expr),<span class="kw-2">*</span>} =&gt; {
+</span><span class="macro">macro_rules!</span> generate_permissions {
+    {$ (
+        $(<span class="attr">#[doc = <span class="macro-nonterminal">$doc</span>:literal]</span>)*
+        $(<span class="attr">#[deprecated = <span class="macro-nonterminal">$deprecated</span>:literal]</span>)<span class="question-mark">?
+        </span><span class="macro-nonterminal">$perm_upper</span>:ident, <span class="macro-nonterminal">$perm_lower</span>:ident, <span class="macro-nonterminal">$name</span>:literal = <span class="macro-nonterminal">$value</span>:expr
+    );<span class="kw-2">*</span>} =&gt; {
+        <span class="macro">bitflags::bitflags!</span> {
+            <span class="kw">impl </span>Permissions: u64 {
+                $(
+                    $(<span class="attr">#[doc = <span class="macro-nonterminal">$doc</span>]</span>)*
+                    $(<span class="attr">#[deprecated = <span class="macro-nonterminal">$deprecated</span>]</span>)*
+                    <span class="kw">const </span><span class="macro-nonterminal">$perm_upper </span>= <span class="macro-nonterminal">$value</span>;
+                )*
+            }
+        }
+
         <span class="kw">impl </span>Permissions {
+            $(
+                <span class="attr">#[doc = <span class="macro">concat!</span>(<span class="string">"Shorthand for checking that the set of permissions contains the ["</span>, <span class="macro-nonterminal">$name</span>, <span class="string">"] permission."</span>)]
+                #[doc = <span class="string">""</span>]
+                #[doc = <span class="macro">concat!</span>(<span class="string">"["</span>, <span class="macro-nonterminal">$name</span>, <span class="string">"]: Self::"</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$perm_upper</span>))]
+                #[must_use]
+                </span>$(
+                    <span class="attr">#[deprecated = <span class="macro-nonterminal">$deprecated</span>]
+                    #[allow(deprecated)]
+                </span>)*
+                <span class="kw">pub fn </span><span class="macro-nonterminal">$perm_lower</span>(<span class="self">self</span>) -&gt; bool {
+                    <span class="self">self</span>.contains(<span class="self">Self</span>::<span class="macro-nonterminal">$perm_upper</span>)
+                }
+            )*
+
             <span class="doccomment">/// Returns a list of names of all contained permissions.
             </span><span class="attr">#[must_use]
+            #[cfg(feature = <span class="string">"model"</span>)]
+            #[allow(deprecated, unused_mut, unused_assignments)]
             </span><span class="kw">pub fn </span>get_permission_names(<span class="self">self</span>) -&gt; Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; {
                 <span class="kw">let </span><span class="kw-2">mut </span>names = Vec::new();
 
                 $(
-                    <span class="kw">if </span><span class="self">self</span>.<span class="macro-nonterminal">$perm</span>() {
+                    <span class="kw">let </span><span class="kw-2">mut </span>is_deprecated = <span class="bool-val">false</span>;
+                    $(
+                        <span class="kw">let _ </span>= <span class="macro-nonterminal">$deprecated</span>;
+                        is_deprecated = <span class="bool-val">true</span>;
+                    )*
+
+                    <span class="kw">if </span>!is_deprecated &amp;&amp; <span class="self">self</span>.<span class="macro-nonterminal">$perm_lower</span>() {
                         names.push(<span class="macro-nonterminal">$name</span>);
                     }
                 )*
@@ -1104,197 +755,147 @@
 #[repr(packed)]
 </span><span class="kw">pub struct </span>Permissions(u64);
 
-<span class="macro">bitflags::bitflags!</span> {
-    <span class="kw">impl </span>Permissions: u64 {
-        <span class="doccomment">/// Allows for the creation of [`RichInvite`]s.
-        ///
-        /// [`RichInvite`]: super::invite::RichInvite
-        </span><span class="kw">const </span>CREATE_INSTANT_INVITE = <span class="number">1 </span>&lt;&lt; <span class="number">0</span>;
-        <span class="doccomment">/// Allows for the kicking of guild [member]s.
-        ///
-        /// [member]: super::guild::Member
-        </span><span class="kw">const </span>KICK_MEMBERS = <span class="number">1 </span>&lt;&lt; <span class="number">1</span>;
-        <span class="doccomment">/// Allows the banning of guild [member]s.
-        ///
-        /// [member]: super::guild::Member
-        </span><span class="kw">const </span>BAN_MEMBERS = <span class="number">1 </span>&lt;&lt; <span class="number">2</span>;
-        <span class="doccomment">/// Allows all permissions, bypassing channel [permission overwrite]s.
-        ///
-        /// [permission overwrite]: super::channel::PermissionOverwrite
-        </span><span class="kw">const </span>ADMINISTRATOR = <span class="number">1 </span>&lt;&lt; <span class="number">3</span>;
-        <span class="doccomment">/// Allows management and editing of guild [channel]s.
-        ///
-        /// [channel]: super::channel::GuildChannel
-        </span><span class="kw">const </span>MANAGE_CHANNELS = <span class="number">1 </span>&lt;&lt; <span class="number">4</span>;
-        <span class="doccomment">/// Allows management and editing of the [guild].
-        ///
-        /// [guild]: super::guild::Guild
-        </span><span class="kw">const </span>MANAGE_GUILD = <span class="number">1 </span>&lt;&lt; <span class="number">5</span>;
-        <span class="doccomment">/// [`Member`]s with this permission can add new [`Reaction`]s to a [`Message`]. Members
-        /// can still react using reactions already added to messages without this permission.
-        ///
-        /// [`Member`]: super::guild::Member
-        /// [`Message`]: super::channel::Message
-        /// [`Reaction`]: super::channel::Reaction
-        </span><span class="kw">const </span>ADD_REACTIONS = <span class="number">1 </span>&lt;&lt; <span class="number">6</span>;
-        <span class="doccomment">/// Allows viewing a guild's audit logs.
-        </span><span class="kw">const </span>VIEW_AUDIT_LOG = <span class="number">1 </span>&lt;&lt; <span class="number">7</span>;
-        <span class="doccomment">/// Allows the use of priority speaking in voice channels.
-        </span><span class="kw">const </span>PRIORITY_SPEAKER = <span class="number">1 </span>&lt;&lt; <span class="number">8</span>;
-        <span class="doccomment">/// Allows the user to go live.
-        </span><span class="kw">const </span>STREAM = <span class="number">1 </span>&lt;&lt; <span class="number">9</span>;
-        <span class="doccomment">/// Allows guild members to view a channel, which includes reading messages in text
-        /// channels and joining voice channels.
-        </span><span class="kw">const </span>VIEW_CHANNEL = <span class="number">1 </span>&lt;&lt; <span class="number">10</span>;
-        <span class="doccomment">/// Allows sending messages in a guild channel.
-        </span><span class="kw">const </span>SEND_MESSAGES = <span class="number">1 </span>&lt;&lt; <span class="number">11</span>;
-        <span class="doccomment">/// Allows the sending of text-to-speech messages in a channel.
-        </span><span class="kw">const </span>SEND_TTS_MESSAGES = <span class="number">1 </span>&lt;&lt; <span class="number">12</span>;
-        <span class="doccomment">/// Allows the deleting of other messages in a guild channel.
-        ///
-        /// **Note**: This does not allow the editing of other messages.
-        </span><span class="kw">const </span>MANAGE_MESSAGES = <span class="number">1 </span>&lt;&lt; <span class="number">13</span>;
-        <span class="doccomment">/// Allows links from this user - or users of this role - to be embedded, with potential
-        /// data such as a thumbnail, description, and page name.
-        </span><span class="kw">const </span>EMBED_LINKS = <span class="number">1 </span>&lt;&lt; <span class="number">14</span>;
-        <span class="doccomment">/// Allows uploading of files.
-        </span><span class="kw">const </span>ATTACH_FILES = <span class="number">1 </span>&lt;&lt; <span class="number">15</span>;
-        <span class="doccomment">/// Allows the reading of a channel's message history.
-        </span><span class="kw">const </span>READ_MESSAGE_HISTORY = <span class="number">1 </span>&lt;&lt; <span class="number">16</span>;
-        <span class="doccomment">/// Allows the usage of the `@everyone` mention, which will notify all users in a channel.
-        /// The `@here` mention will also be available, and can be used to mention all non-offline
-        /// users.
-        ///
-        /// **Note**: You probably want this to be disabled for most roles and users.
-        </span><span class="kw">const </span>MENTION_EVERYONE = <span class="number">1 </span>&lt;&lt; <span class="number">17</span>;
-        <span class="doccomment">/// Allows the usage of custom emojis from other guilds.
-        ///
-        /// This does not dictate whether custom emojis in this guild can be used in other guilds.
-        </span><span class="kw">const </span>USE_EXTERNAL_EMOJIS = <span class="number">1 </span>&lt;&lt; <span class="number">18</span>;
-        <span class="doccomment">/// Allows for viewing guild insights.
-        </span><span class="kw">const </span>VIEW_GUILD_INSIGHTS = <span class="number">1 </span>&lt;&lt; <span class="number">19</span>;
-        <span class="doccomment">/// Allows the joining of a voice channel.
-        </span><span class="kw">const </span>CONNECT = <span class="number">1 </span>&lt;&lt; <span class="number">20</span>;
-        <span class="doccomment">/// Allows the user to speak in a voice channel.
-        </span><span class="kw">const </span>SPEAK = <span class="number">1 </span>&lt;&lt; <span class="number">21</span>;
-        <span class="doccomment">/// Allows the muting of members in a voice channel.
-        </span><span class="kw">const </span>MUTE_MEMBERS = <span class="number">1 </span>&lt;&lt; <span class="number">22</span>;
-        <span class="doccomment">/// Allows the deafening of members in a voice channel.
-        </span><span class="kw">const </span>DEAFEN_MEMBERS = <span class="number">1 </span>&lt;&lt; <span class="number">23</span>;
-        <span class="doccomment">/// Allows the moving of members from one voice channel to another.
-        </span><span class="kw">const </span>MOVE_MEMBERS = <span class="number">1 </span>&lt;&lt; <span class="number">24</span>;
-        <span class="doccomment">/// Allows the usage of voice-activity-detection in a [voice] channel.
-        ///
-        /// If this is disabled, then [`Member`]s must use push-to-talk.
-        ///
-        /// [`Member`]: super::guild::Member
-        /// [voice]: super::channel::ChannelType::Voice
-        </span><span class="kw">const </span>USE_VAD = <span class="number">1 </span>&lt;&lt; <span class="number">25</span>;
-        <span class="doccomment">/// Allows members to change their own nickname in the guild.
-        </span><span class="kw">const </span>CHANGE_NICKNAME = <span class="number">1 </span>&lt;&lt; <span class="number">26</span>;
-        <span class="doccomment">/// Allows members to change other members' nicknames.
-        </span><span class="kw">const </span>MANAGE_NICKNAMES = <span class="number">1 </span>&lt;&lt; <span class="number">27</span>;
-        <span class="doccomment">/// Allows management and editing of roles below their own.
-        </span><span class="kw">const </span>MANAGE_ROLES = <span class="number">1 </span>&lt;&lt; <span class="number">28</span>;
-        <span class="doccomment">/// Allows management of webhooks.
-        </span><span class="kw">const </span>MANAGE_WEBHOOKS = <span class="number">1 </span>&lt;&lt; <span class="number">29</span>;
-        <span class="doccomment">/// Allows for editing and deleting emojis, stickers, and soundboard sounds created by all
-        /// users.
-        </span><span class="kw">const </span>MANAGE_GUILD_EXPRESSIONS = <span class="number">1 </span>&lt;&lt; <span class="number">30</span>;
-        <span class="doccomment">/// Allows members to use application commands, including slash commands and context menu
-        /// commands.
-        </span><span class="kw">const </span>USE_APPLICATION_COMMANDS = <span class="number">1 </span>&lt;&lt; <span class="number">31</span>;
-        <span class="doccomment">/// Allows for requesting to speak in stage channels.
-        </span><span class="kw">const </span>REQUEST_TO_SPEAK = <span class="number">1 </span>&lt;&lt; <span class="number">32</span>;
-        <span class="doccomment">/// Allows for editing, and deleting scheduled events created by all users.
-        </span><span class="kw">const </span>MANAGE_EVENTS = <span class="number">1 </span>&lt;&lt; <span class="number">33</span>;
-        <span class="doccomment">/// Allows for deleting and archiving threads, and viewing all private threads.
-        </span><span class="kw">const </span>MANAGE_THREADS = <span class="number">1 </span>&lt;&lt; <span class="number">34</span>;
-        <span class="doccomment">/// Allows for creating threads.
-        </span><span class="kw">const </span>CREATE_PUBLIC_THREADS = <span class="number">1 </span>&lt;&lt; <span class="number">35</span>;
-        <span class="doccomment">/// Allows for creating private threads.
-        </span><span class="kw">const </span>CREATE_PRIVATE_THREADS = <span class="number">1 </span>&lt;&lt; <span class="number">36</span>;
-        <span class="doccomment">/// Allows the usage of custom stickers from other servers.
-        </span><span class="kw">const </span>USE_EXTERNAL_STICKERS = <span class="number">1 </span>&lt;&lt; <span class="number">37</span>;
-        <span class="doccomment">/// Allows for sending messages in threads
-        </span><span class="kw">const </span>SEND_MESSAGES_IN_THREADS = <span class="number">1 </span>&lt;&lt; <span class="number">38</span>;
-        <span class="doccomment">/// Allows for launching activities in a voice channel
-        </span><span class="kw">const </span>USE_EMBEDDED_ACTIVITIES = <span class="number">1 </span>&lt;&lt; <span class="number">39</span>;
-        <span class="doccomment">/// Allows for timing out users to prevent them from sending or reacting to messages in
-        /// chat and threads, and from speaking in voice and stage channels.
-        </span><span class="kw">const </span>MODERATE_MEMBERS = <span class="number">1 </span>&lt;&lt; <span class="number">40</span>;
-        <span class="doccomment">/// Allows for viewing role subscription insights.
-        </span><span class="kw">const </span>VIEW_CREATOR_MONETIZATION_ANALYTICS = <span class="number">1 </span>&lt;&lt; <span class="number">41</span>;
-        <span class="doccomment">/// Allows for using soundboard in a voice channel.
-        </span><span class="kw">const </span>USE_SOUNDBOARD = <span class="number">1 </span>&lt;&lt; <span class="number">42</span>;
-        <span class="doccomment">/// Allows for creating emojis, stickers, and soundboard sounds, and editing and deleting
-        /// those created by the current user.
-        </span><span class="kw">const </span>CREATE_GUILD_EXPRESSIONS = <span class="number">1 </span>&lt;&lt; <span class="number">43</span>;
-        <span class="doccomment">/// Allows for creating scheduled events, and editing and deleting those created by the
-        /// current user.
-        </span><span class="kw">const </span>CREATE_EVENTS = <span class="number">1 </span>&lt;&lt; <span class="number">44</span>;
-        <span class="doccomment">/// Allows the usage of custom soundboard sounds from other servers.
-        </span><span class="kw">const </span>USE_EXTERNAL_SOUNDS = <span class="number">1 </span>&lt;&lt; <span class="number">45</span>;
-        <span class="doccomment">/// Allows sending voice messages.
-        </span><span class="kw">const </span>SEND_VOICE_MESSAGES = <span class="number">1 </span>&lt;&lt; <span class="number">46</span>;
-        <span class="doccomment">/// Allows setting the status of a voice channel.
-        </span><span class="kw">const </span>SET_VOICE_CHANNEL_STATUS = <span class="number">1 </span>&lt;&lt; <span class="number">48</span>;
-        <span class="doccomment">/// Allows attaching polls to message sends.
-        </span><span class="kw">const </span>SEND_POLLS = <span class="number">1 </span>&lt;&lt; <span class="number">49</span>;
-        <span class="doccomment">/// Allows user-installed apps to send public responses.
-        </span><span class="kw">const </span>USE_EXTERNAL_APPS = <span class="number">1 </span>&lt;&lt; <span class="number">50</span>;
-    }
-}
-
-<span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
-</span><span class="macro">generate_get_permission_names!</span> {
-    add_reactions: <span class="string">"Add Reactions"</span>,
-    administrator: <span class="string">"Administrator"</span>,
-    attach_files: <span class="string">"Attach Files"</span>,
-    ban_members: <span class="string">"Ban Members"</span>,
-    change_nickname: <span class="string">"Change Nickname"</span>,
-    connect: <span class="string">"Connect"</span>,
-    create_events: <span class="string">"Create Events"</span>,
-    create_guild_expressions: <span class="string">"Create Guild Expressions"</span>,
-    create_instant_invite: <span class="string">"Create Instant Invite"</span>,
-    create_private_threads: <span class="string">"Create Private Threads"</span>,
-    create_public_threads: <span class="string">"Create Public Threads"</span>,
-    deafen_members: <span class="string">"Deafen Members"</span>,
-    embed_links: <span class="string">"Embed Links"</span>,
-    kick_members: <span class="string">"Kick Members"</span>,
-    manage_channels: <span class="string">"Manage Channels"</span>,
-    manage_events: <span class="string">"Manage Events"</span>,
-    manage_guild: <span class="string">"Manage Guilds"</span>,
-    manage_guild_expressions: <span class="string">"Manage Guild Expressions"</span>,
-    manage_messages: <span class="string">"Manage Messages"</span>,
-    manage_nicknames: <span class="string">"Manage Nicknames"</span>,
-    manage_roles: <span class="string">"Manage Roles"</span>,
-    manage_threads: <span class="string">"Manage Threads"</span>,
-    manage_webhooks: <span class="string">"Manage Webhooks"</span>,
-    mention_everyone: <span class="string">"Mention Everyone"</span>,
-    moderate_members: <span class="string">"Moderate Members"</span>,
-    move_members: <span class="string">"Move Members"</span>,
-    mute_members: <span class="string">"Mute Members"</span>,
-    priority_speaker: <span class="string">"Priority Speaker"</span>,
-    read_message_history: <span class="string">"Read Message History"</span>,
-    request_to_speak: <span class="string">"Request To Speak"</span>,
-    send_messages: <span class="string">"Send Messages"</span>,
-    send_messages_in_threads: <span class="string">"Send Messages in Threads"</span>,
-    send_tts_messages: <span class="string">"Send TTS Messages"</span>,
-    speak: <span class="string">"Speak"</span>,
-    stream: <span class="string">"Stream"</span>,
-    use_commands: <span class="string">"Use Application Commands"</span>,
-    use_embedded_activities: <span class="string">"Use Embedded Activities"</span>,
-    use_external_emojis: <span class="string">"Use External Emojis"</span>,
-    use_external_stickers: <span class="string">"Use External Stickers"</span>,
-    use_vad: <span class="string">"Use Voice Activity"</span>,
-    view_audit_log: <span class="string">"View Audit Log"</span>,
-    view_channel: <span class="string">"View Channel"</span>,
-    view_guild_insights: <span class="string">"View Guild Insights"
+<span class="macro">generate_permissions!</span> {
+    <span class="doccomment">/// Allows for the creation of [`RichInvite`]s.
+    ///
+    /// [`RichInvite`]: super::invite::RichInvite
+    </span>CREATE_INSTANT_INVITE, create_instant_invite, <span class="string">"Create Invites" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">0</span>;
+    <span class="doccomment">/// Allows for the kicking of guild [member]s.
+    ///
+    /// [member]: super::guild::Member
+    </span>KICK_MEMBERS, kick_members, <span class="string">"Kick Members" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">1</span>;
+    <span class="doccomment">/// Allows the banning of guild [member]s.
+    ///
+    /// [member]: super::guild::Member
+    </span>BAN_MEMBERS, ban_members, <span class="string">"Ban Members" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">2</span>;
+    <span class="doccomment">/// Allows all permissions, bypassing channel [permission overwrite]s.
+    ///
+    /// [permission overwrite]: super::channel::PermissionOverwrite
+    </span>ADMINISTRATOR, administrator, <span class="string">"Administrator" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">3</span>;
+    <span class="doccomment">/// Allows management and editing of guild [channel]s.
+    ///
+    /// [channel]: super::channel::GuildChannel
+    </span>MANAGE_CHANNELS, manage_channels, <span class="string">"Manage Channels" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">4</span>;
+    <span class="doccomment">/// Allows management and editing of the [guild].
+    ///
+    /// [guild]: super::guild::Guild
+    </span>MANAGE_GUILD, manage_guild, <span class="string">"Manage Guild" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">5</span>;
+    <span class="doccomment">/// [`Member`]s with this permission can add new [`Reaction`]s to a [`Message`]. Members
+    /// can still react using reactions already added to messages without this permission.
+    ///
+    /// [`Member`]: super::guild::Member
+    /// [`Message`]: super::channel::Message
+    /// [`Reaction`]: super::channel::Reaction
+    </span>ADD_REACTIONS, add_reactions, <span class="string">"Add Reactions" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">6</span>;
+    <span class="doccomment">/// Allows viewing a guild's audit logs.
+    </span>VIEW_AUDIT_LOG, view_audit_log, <span class="string">"View Audit Log" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">7</span>;
+    <span class="doccomment">/// Allows the use of priority speaking in voice channels.
+    </span>PRIORITY_SPEAKER, priority_speaker, <span class="string">"Priority Speaker" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">8</span>;
+    <span class="doccomment">/// Allows the user to go live.
+    </span>STREAM, stream, <span class="string">"Stream" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">9</span>;
+    <span class="doccomment">/// Allows guild members to view a channel, which includes reading messages in text
+    /// channels and joining voice channels.
+    </span>VIEW_CHANNEL, view_channel, <span class="string">"View Channel" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">10</span>;
+    <span class="doccomment">/// Allows sending messages in a guild channel.
+    </span>SEND_MESSAGES, send_messages, <span class="string">"Send Messages" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">11</span>;
+    <span class="doccomment">/// Allows the sending of text-to-speech messages in a channel.
+    </span>SEND_TTS_MESSAGES, send_tts_messages, <span class="string">"Send TTS Messages" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">12</span>;
+    <span class="doccomment">/// Allows the deleting of other messages in a guild channel.
+    ///
+    /// **Note**: This does not allow the editing of other messages.
+    </span>MANAGE_MESSAGES, manage_messages, <span class="string">"Manage Messages" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">13</span>;
+    <span class="doccomment">/// Allows links from this user - or users of this role - to be embedded, with potential
+    /// data such as a thumbnail, description, and page name.
+    </span>EMBED_LINKS, embed_links, <span class="string">"Embed Links" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">14</span>;
+    <span class="doccomment">/// Allows uploading of files.
+    </span>ATTACH_FILES, attach_files, <span class="string">"Attach Files" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">15</span>;
+    <span class="doccomment">/// Allows the reading of a channel's message history.
+    </span>READ_MESSAGE_HISTORY, read_message_history, <span class="string">"Read Message History" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">16</span>;
+    <span class="doccomment">/// Allows the usage of the `@everyone` mention, which will notify all users in a channel.
+    /// The `@here` mention will also be available, and can be used to mention all non-offline
+    /// users.
+    ///
+    /// **Note**: You probably want this to be disabled for most roles and users.
+    </span>MENTION_EVERYONE, mention_everyone, <span class="string">"Mention @everyone, @here, and All Roles" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">17</span>;
+    <span class="doccomment">/// Allows the usage of custom emojis from other guilds.
+    ///
+    /// This does not dictate whether custom emojis in this guild can be used in other guilds.
+    </span>USE_EXTERNAL_EMOJIS, use_external_emojis, <span class="string">"Use External Emojis" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">18</span>;
+    <span class="doccomment">/// Allows for viewing guild insights.
+    </span>VIEW_GUILD_INSIGHTS, view_guild_insights, <span class="string">"View Guild Insights" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">19</span>;
+    <span class="doccomment">/// Allows the joining of a voice channel.
+    </span>CONNECT, connect, <span class="string">"Connect" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">20</span>;
+    <span class="doccomment">/// Allows the user to speak in a voice channel.
+    </span>SPEAK, speak, <span class="string">"Speak" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">21</span>;
+    <span class="doccomment">/// Allows the muting of members in a voice channel.
+    </span>MUTE_MEMBERS, mute_members, <span class="string">"Mute Members" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">22</span>;
+    <span class="doccomment">/// Allows the deafening of members in a voice channel.
+    </span>DEAFEN_MEMBERS, deafen_members, <span class="string">"Deafen Members" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">23</span>;
+    <span class="doccomment">/// Allows the moving of members from one voice channel to another.
+    </span>MOVE_MEMBERS, move_members, <span class="string">"Move Members" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">24</span>;
+    <span class="doccomment">/// Allows the usage of voice-activity-detection in a [voice] channel.
+    ///
+    /// If this is disabled, then [`Member`]s must use push-to-talk.
+    ///
+    /// [`Member`]: super::guild::Member
+    /// [voice]: super::channel::ChannelType::Voice
+    </span>USE_VAD, use_vad, <span class="string">"Use Voice Activity" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">25</span>;
+    <span class="doccomment">/// Allows members to change their own nickname in the guild.
+    </span>CHANGE_NICKNAME, change_nickname, <span class="string">"Change Nickname" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">26</span>;
+    <span class="doccomment">/// Allows members to change other members' nicknames.
+    </span>MANAGE_NICKNAMES, manage_nicknames, <span class="string">"Manage Nicknames" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">27</span>;
+    <span class="doccomment">/// Allows management and editing of roles below their own.
+    </span>MANAGE_ROLES, manage_roles, <span class="string">"Manage Roles" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">28</span>;
+    <span class="doccomment">/// Allows management of webhooks.
+    </span>MANAGE_WEBHOOKS, manage_webhooks, <span class="string">"Manage Webhooks" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">29</span>;
+    <span class="doccomment">/// Allows for editing and deleting emojis, stickers, and soundboard sounds created by all
+    /// users.
+    </span>MANAGE_GUILD_EXPRESSIONS, manage_guild_expressions, <span class="string">"Manage Guild Expressions" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">30</span>;
+    <span class="doccomment">/// Allows members to use application commands, including slash commands and context menu
+    /// commands.
+    </span>USE_APPLICATION_COMMANDS, use_application_commands, <span class="string">"Use Application Commands" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">31</span>;
+    <span class="doccomment">/// Allows for requesting to speak in stage channels.
+    </span>REQUEST_TO_SPEAK, request_to_speak, <span class="string">"Request to Speak" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">32</span>;
+    <span class="doccomment">/// Allows for editing, and deleting scheduled events created by all users.
+    </span>MANAGE_EVENTS, manage_events, <span class="string">"Manage Events" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">33</span>;
+    <span class="doccomment">/// Allows for deleting and archiving threads, and viewing all private threads.
+    </span>MANAGE_THREADS, manage_threads, <span class="string">"Manage Threads" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">34</span>;
+    <span class="doccomment">/// Allows for creating threads.
+    </span>CREATE_PUBLIC_THREADS, create_public_threads, <span class="string">"Create Public Threads" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">35</span>;
+    <span class="doccomment">/// Allows for creating private threads.
+    </span>CREATE_PRIVATE_THREADS, create_private_threads, <span class="string">"Create Private Threads" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">36</span>;
+    <span class="doccomment">/// Allows the usage of custom stickers from other servers.
+    </span>USE_EXTERNAL_STICKERS, use_external_stickers, <span class="string">"Use External Stickers" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">37</span>;
+    <span class="doccomment">/// Allows for sending messages in threads
+    </span>SEND_MESSAGES_IN_THREADS, send_messages_in_threads, <span class="string">"Send Messages in Threads" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">38</span>;
+    <span class="doccomment">/// Allows for launching activities in a voice channel
+    </span>USE_EMBEDDED_ACTIVITIES, use_embedded_activities, <span class="string">"Use Embedded Activities" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">39</span>;
+    <span class="doccomment">/// Allows for timing out users to prevent them from sending or reacting to messages in
+    /// chat and threads, and from speaking in voice and stage channels.
+    </span>MODERATE_MEMBERS, moderate_members, <span class="string">"Moderate Members" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">40</span>;
+    <span class="doccomment">/// Allows for viewing role subscription insights.
+    </span>VIEW_CREATOR_MONETIZATION_ANALYTICS, view_creator_monetization_analytics, <span class="string">"View Creator Monetization Analytics" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">41</span>;
+    <span class="doccomment">/// Allows for using soundboard in a voice channel.
+    </span>USE_SOUNDBOARD, use_soundboard, <span class="string">"Use Soundboard" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">42</span>;
+    <span class="doccomment">/// Allows for creating emojis, stickers, and soundboard sounds, and editing and deleting
+    /// those created by the current user.
+    </span>CREATE_GUILD_EXPRESSIONS, create_guild_expressions, <span class="string">"Create Guild Expressions" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">43</span>;
+    <span class="doccomment">/// Allows for creating scheduled events, and editing and deleting those created by the
+    /// current user.
+    </span>CREATE_EVENTS, create_events, <span class="string">"Create Events" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">44</span>;
+    <span class="doccomment">/// Allows the usage of custom soundboard sounds from other servers.
+    </span>USE_EXTERNAL_SOUNDS, use_external_sounds, <span class="string">"Use External Sounds" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">45</span>;
+    <span class="doccomment">/// Allows sending voice messages.
+    </span>SEND_VOICE_MESSAGES, send_voice_messages, <span class="string">"Send Voice Messages" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">46</span>;
+    <span class="doccomment">/// Allows setting the status of a voice channel.
+    </span>SET_VOICE_CHANNEL_STATUS, set_voice_channel_status, <span class="string">"Set Voice Channel status" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">48</span>;
+    <span class="doccomment">/// Allows attaching polls to message sends.
+    </span>SEND_POLLS, send_polls, <span class="string">"Send Polls" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">49</span>;
+    <span class="doccomment">/// Allows user-installed apps to send public responses.
+    </span>USE_EXTERNAL_APPS, use_external_apps, <span class="string">"Use External Apps" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">50
 </span>}
 
-<span class="doccomment">/// TODO: use a macro to shorten this entire file lol
-</span><span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
 </span><span class="kw">impl </span>Permissions {
     <span class="attr">#[must_use]
     </span><span class="kw">pub fn </span>dm_permissions() -&gt; <span class="self">Self </span>{
@@ -1316,391 +917,6 @@
             | <span class="self">Self</span>::SEND_VOICE_MESSAGES
             | <span class="self">Self</span>::SEND_POLLS
             | <span class="self">Self</span>::USE_EXTERNAL_APPS
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Add Reactions] permission.
-    ///
-    /// [Add Reactions]: Self::ADD_REACTIONS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>add_reactions(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::ADD_REACTIONS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Administrator] permission.
-    ///
-    /// [Administrator]: Self::ADMINISTRATOR
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>administrator(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::ADMINISTRATOR)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Attach Files] permission.
-    ///
-    /// [Attach Files]: Self::ATTACH_FILES
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>attach_files(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::ATTACH_FILES)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Ban Members] permission.
-    ///
-    /// [Ban Members]: Self::BAN_MEMBERS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>ban_members(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::BAN_MEMBERS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Change Nickname]
-    /// permission.
-    ///
-    /// [Change Nickname]: Self::CHANGE_NICKNAME
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>change_nickname(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::CHANGE_NICKNAME)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Connect] permission.
-    ///
-    /// [Connect]: Self::CONNECT
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>connect(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::CONNECT)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Create Events] permission.
-    ///
-    /// [Create Events]: Self::CREATE_EVENTS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>create_events(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::CREATE_EVENTS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Create Guild Expressions]
-    /// permission.
-    ///
-    /// [Create Guild Expressions]: Self::CREATE_GUILD_EXPRESSIONS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>create_guild_expressions(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::CREATE_GUILD_EXPRESSIONS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [View Audit Log]
-    /// permission.
-    ///
-    /// [View Audit Log]: Self::VIEW_AUDIT_LOG
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>view_audit_log(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::VIEW_AUDIT_LOG)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [View Channel] permission.
-    ///
-    /// [View Channel]: Self::VIEW_CHANNEL
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>view_channel(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::VIEW_CHANNEL)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [View Guild Insights]
-    /// permission.
-    ///
-    /// [View Guild Insights]: Self::VIEW_GUILD_INSIGHTS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>view_guild_insights(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::VIEW_GUILD_INSIGHTS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permission contains the [Priority Speaker]
-    /// permission.
-    ///
-    /// [Priority Speaker]: Self::PRIORITY_SPEAKER
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>priority_speaker(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::PRIORITY_SPEAKER)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permission contains the [Stream] permission.
-    ///
-    /// [Stream]: Self::STREAM
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>stream(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::STREAM)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Create Instant Invite]
-    /// permission.
-    ///
-    /// [Create Instant Invite]: Self::CREATE_INSTANT_INVITE
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>create_instant_invite(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::CREATE_INSTANT_INVITE)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Create Private Threads]
-    /// permission.
-    ///
-    /// [Create Private Threads]: Self::CREATE_PRIVATE_THREADS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>create_private_threads(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::CREATE_PRIVATE_THREADS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Create Public Threads]
-    /// permission.
-    ///
-    /// [Create Public Threads]: Self::CREATE_PUBLIC_THREADS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>create_public_threads(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::CREATE_PUBLIC_THREADS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Deafen Members]
-    /// permission.
-    ///
-    /// [Deafen Members]: Self::DEAFEN_MEMBERS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>deafen_members(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::DEAFEN_MEMBERS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Embed Links] permission.
-    ///
-    /// [Embed Links]: Self::EMBED_LINKS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>embed_links(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::EMBED_LINKS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Kick Members] permission.
-    ///
-    /// [Kick Members]: Self::KICK_MEMBERS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>kick_members(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::KICK_MEMBERS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Manage Channels]
-    /// permission.
-    ///
-    /// [Manage Channels]: Self::MANAGE_CHANNELS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>manage_channels(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::MANAGE_CHANNELS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Manage Events] permission.
-    ///
-    /// [Manage Events]: Self::MANAGE_EVENTS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>manage_events(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::MANAGE_EVENTS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Manage Guild] permission.
-    ///
-    /// [Manage Guild]: Self::MANAGE_GUILD
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>manage_guild(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::MANAGE_GUILD)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Manage Guild Expressions]
-    /// permission.
-    ///
-    /// [Manage Guild Expressions]: Self::MANAGE_GUILD_EXPRESSIONS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>manage_guild_expressions(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::MANAGE_GUILD_EXPRESSIONS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Manage Messages]
-    /// permission.
-    ///
-    /// [Manage Messages]: Self::MANAGE_MESSAGES
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>manage_messages(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::MANAGE_MESSAGES)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Manage Nicknames]
-    /// permission.
-    ///
-    /// [Manage Nicknames]: Self::MANAGE_NICKNAMES
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>manage_nicknames(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::MANAGE_NICKNAMES)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Manage Roles] permission.
-    ///
-    /// [Manage Roles]: Self::MANAGE_ROLES
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>manage_roles(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::MANAGE_ROLES)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Manage Threads]
-    /// permission.
-    ///
-    /// [Manage Threads]: Self::MANAGE_THREADS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>manage_threads(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::MANAGE_THREADS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Manage Webhooks]
-    /// permission.
-    ///
-    /// [Manage Webhooks]: Self::MANAGE_WEBHOOKS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>manage_webhooks(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::MANAGE_WEBHOOKS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Mention Everyone]
-    /// permission.
-    ///
-    /// [Mention Everyone]: Self::MENTION_EVERYONE
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>mention_everyone(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::MENTION_EVERYONE)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Moderate Members]
-    /// permission.
-    ///
-    /// [Moderate Members]: Self::MODERATE_MEMBERS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>moderate_members(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::MODERATE_MEMBERS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Move Members] permission.
-    ///
-    /// [Move Members]: Self::MOVE_MEMBERS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>move_members(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::MOVE_MEMBERS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Mute Members] permission.
-    ///
-    /// [Mute Members]: Self::MUTE_MEMBERS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>mute_members(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::MUTE_MEMBERS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Read Message History]
-    /// permission.
-    ///
-    /// [Read Message History]: Self::READ_MESSAGE_HISTORY
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>read_message_history(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::READ_MESSAGE_HISTORY)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Send Messages] permission.
-    ///
-    /// [Send Messages]: Self::SEND_MESSAGES
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>send_messages(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::SEND_MESSAGES)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Send Messages in Threads]
-    /// permission.
-    ///
-    /// [Send Messages in Threads]: Self::SEND_MESSAGES_IN_THREADS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>send_messages_in_threads(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::SEND_MESSAGES_IN_THREADS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Send TTS Messages]
-    /// permission.
-    ///
-    /// [Send TTS Messages]: Self::SEND_TTS_MESSAGES
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>send_tts_messages(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::SEND_TTS_MESSAGES)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Speak] permission.
-    ///
-    /// [Speak]: Self::SPEAK
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>speak(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::SPEAK)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Request To Speak]
-    /// permission.
-    ///
-    /// [Request To Speak]: Self::REQUEST_TO_SPEAK
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>request_to_speak(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::REQUEST_TO_SPEAK)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Use Embedded Activities]
-    /// permission.
-    ///
-    /// [Use Embedded Activities]: Self::USE_EMBEDDED_ACTIVITIES
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>use_embedded_activities(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::USE_EMBEDDED_ACTIVITIES)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Use External Emojis]
-    /// permission.
-    ///
-    /// [Use External Emojis]: Self::USE_EXTERNAL_EMOJIS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>use_external_emojis(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::USE_EXTERNAL_EMOJIS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Use External Stickers]
-    /// permission.
-    ///
-    /// [Use External Stickers]: Self::USE_EXTERNAL_STICKERS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>use_external_stickers(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::USE_EXTERNAL_STICKERS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Use Application Commands]
-    /// permission.
-    ///
-    /// [Use Application Commands]: Self::USE_APPLICATION_COMMANDS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>use_commands(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::USE_APPLICATION_COMMANDS)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Use VAD] permission.
-    ///
-    /// [Use VAD]: Self::USE_VAD
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>use_vad(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::USE_VAD)
-    }
-
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Send Polls] permission.
-    ///
-    /// [Send Polls]: Self::SEND_POLLS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>send_polls(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::SEND_POLLS)
-    }
-    <span class="doccomment">/// Shorthand for checking that the set of permissions contains the [Use External Apps]
-    /// permission.
-    ///
-    /// [Use External Apps]: Self::USE_EXTERNAL_APPS
-    </span><span class="attr">#[must_use]
-    </span><span class="kw">pub const fn </span>use_external_apps(<span class="self">self</span>) -&gt; bool {
-        <span class="self">self</span>.contains(<span class="self">Self</span>::USE_EXTERNAL_APPS)
     }
 }
 
