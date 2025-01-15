@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/channel/message.rs`."><title>message.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-46132b98.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.86.0-nightly (48a426eca 2025-01-12)" data-channel="nightly" data-search-js="search-75f5ac3e.js" data-settings-js="settings-0f613d39.js" ><script src="../../../../static.files/storage-59e33391.js"></script><script defer src="../../../../static.files/src-script-56102188.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/channel/</div>message.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/channel/message.rs`."><title>message.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-46132b98.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.86.0-nightly (8361aef0d 2025-01-14)" data-channel="nightly" data-search-js="search-75f5ac3e.js" data-settings-js="settings-0f613d39.js" ><script src="../../../../static.files/storage-59e33391.js"></script><script defer src="../../../../static.files/src-script-56102188.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/channel/</div>message.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
 <a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -1494,7 +1494,51 @@
 <a href="#1493" id="1493">1493</a>
 <a href="#1494" id="1494">1494</a>
 <a href="#1495" id="1495">1495</a>
-<a href="#1496" id="1496">1496</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models relating to Discord channels.
+<a href="#1496" id="1496">1496</a>
+<a href="#1497" id="1497">1497</a>
+<a href="#1498" id="1498">1498</a>
+<a href="#1499" id="1499">1499</a>
+<a href="#1500" id="1500">1500</a>
+<a href="#1501" id="1501">1501</a>
+<a href="#1502" id="1502">1502</a>
+<a href="#1503" id="1503">1503</a>
+<a href="#1504" id="1504">1504</a>
+<a href="#1505" id="1505">1505</a>
+<a href="#1506" id="1506">1506</a>
+<a href="#1507" id="1507">1507</a>
+<a href="#1508" id="1508">1508</a>
+<a href="#1509" id="1509">1509</a>
+<a href="#1510" id="1510">1510</a>
+<a href="#1511" id="1511">1511</a>
+<a href="#1512" id="1512">1512</a>
+<a href="#1513" id="1513">1513</a>
+<a href="#1514" id="1514">1514</a>
+<a href="#1515" id="1515">1515</a>
+<a href="#1516" id="1516">1516</a>
+<a href="#1517" id="1517">1517</a>
+<a href="#1518" id="1518">1518</a>
+<a href="#1519" id="1519">1519</a>
+<a href="#1520" id="1520">1520</a>
+<a href="#1521" id="1521">1521</a>
+<a href="#1522" id="1522">1522</a>
+<a href="#1523" id="1523">1523</a>
+<a href="#1524" id="1524">1524</a>
+<a href="#1525" id="1525">1525</a>
+<a href="#1526" id="1526">1526</a>
+<a href="#1527" id="1527">1527</a>
+<a href="#1528" id="1528">1528</a>
+<a href="#1529" id="1529">1529</a>
+<a href="#1530" id="1530">1530</a>
+<a href="#1531" id="1531">1531</a>
+<a href="#1532" id="1532">1532</a>
+<a href="#1533" id="1533">1533</a>
+<a href="#1534" id="1534">1534</a>
+<a href="#1535" id="1535">1535</a>
+<a href="#1536" id="1536">1536</a>
+<a href="#1537" id="1537">1537</a>
+<a href="#1538" id="1538">1538</a>
+<a href="#1539" id="1539">1539</a>
+<a href="#1540" id="1540">1540</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models relating to Discord channels.
 
 </span><span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
 </span><span class="kw">use </span>std::fmt::Display;
@@ -1602,7 +1646,10 @@
     </span><span class="kw">pub </span>flags: <span class="prelude-ty">Option</span>&lt;MessageFlags&gt;,
     <span class="doccomment">/// The message that was replied to using this message.
     </span><span class="kw">pub </span>referenced_message: <span class="prelude-ty">Option</span>&lt;Box&lt;Message&gt;&gt;, <span class="comment">// Boxed to avoid recursion
-    </span><span class="attr">#[cfg_attr(not(ignore_serenity_deprecated), deprecated = <span class="string">"Use interaction_metadata"</span>)]
+    </span><span class="doccomment">/// An array of message snapshots, known as forwarded messages.
+    </span><span class="attr">#[serde(default, deserialize_with = <span class="string">"deserialize_snapshots"</span>)]
+    </span><span class="kw">pub </span>message_snapshots: Vec&lt;MessageSnapshot&gt;,
+    <span class="attr">#[cfg_attr(not(ignore_serenity_deprecated), deprecated = <span class="string">"Use interaction_metadata"</span>)]
     </span><span class="kw">pub </span>interaction: <span class="prelude-ty">Option</span>&lt;Box&lt;MessageInteraction&gt;&gt;,
     <span class="doccomment">/// Sent if the message is a response to an [`Interaction`].
     ///
@@ -2684,6 +2731,47 @@
     </span><span class="kw">pub </span>kind: ChannelType,
     <span class="doccomment">/// The name of the channel
     </span><span class="kw">pub </span>name: String,
+}
+
+<span class="doccomment">/// [Discord docs](https://discord.com/developers/docs/resources/message#message-snapshot-structure)
+///
+/// For field documentation, see [`Message`].
+</span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[non_exhaustive]
+</span><span class="kw">pub struct </span>MessageSnapshot {
+    <span class="kw">pub </span>content: String,
+    <span class="kw">pub </span>timestamp: Timestamp,
+    <span class="kw">pub </span>edited_timestamp: <span class="prelude-ty">Option</span>&lt;Timestamp&gt;,
+    <span class="kw">pub </span>mentions: Vec&lt;User&gt;,
+    <span class="attr">#[serde(default)]
+    </span><span class="kw">pub </span>mention_roles: Vec&lt;RoleId&gt;,
+    <span class="kw">pub </span>attachments: Vec&lt;Attachment&gt;,
+    <span class="kw">pub </span>embeds: Vec&lt;Embed&gt;,
+    <span class="attr">#[serde(rename = <span class="string">"type"</span>)]
+    </span><span class="kw">pub </span>kind: MessageType,
+    <span class="kw">pub </span>flags: <span class="prelude-ty">Option</span>&lt;MessageFlags&gt;,
+    <span class="attr">#[serde(default)]
+    </span><span class="kw">pub </span>components: Vec&lt;ActionRow&gt;,
+    <span class="attr">#[serde(default)]
+    </span><span class="kw">pub </span>sticker_items: Vec&lt;StickerItem&gt;,
+}
+
+<span class="doccomment">/// Custom deserialization function to handle the nested "message" field
+</span><span class="kw">fn </span>deserialize_snapshots&lt;<span class="lifetime">'de</span>, D&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;MessageSnapshot&gt;, D::Error&gt;
+<span class="kw">where
+    </span>D: Deserializer&lt;<span class="lifetime">'de</span>&gt;,
+{
+    <span class="attr">#[derive(Deserialize)]
+    </span><span class="kw">struct </span>MessageSnapshotWrapper {
+        <span class="kw">pub </span>message: MessageSnapshot,
+    }
+
+    <span class="kw">let </span>snapshots: Vec&lt;MessageSnapshotWrapper&gt; = Deserialize::deserialize(deserializer)<span class="question-mark">?</span>;
+
+    <span class="kw">let </span>result = snapshots.into_iter().map(|wrapper| wrapper.message).collect();
+
+    <span class="prelude-val">Ok</span>(result)
 }
 
 <span class="macro">bitflags!</span> {
