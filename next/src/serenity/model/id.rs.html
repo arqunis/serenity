@@ -430,7 +430,7 @@
 
 <span class="doccomment">/// The inner storage of an ID.
 </span><span class="attr">#[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
-#[repr(packed)]
+#[repr(Rust, packed)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>InnerId(NonMaxU64);
 
 <span class="kw">struct </span>SnowflakeVisitor;
@@ -527,7 +527,7 @@
 /// The specific algorithm used is currently just a sequential index but this is subject to change.
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Copy, Debug, Eq, Hash, PartialEq, PartialOrd, Ord, Deserialize, Serialize)]
-#[repr(packed)]
+#[repr(Rust, packed)]
 </span><span class="kw">pub struct </span>AnswerId(nonmax::NonMaxU8);
 
 <span class="kw">impl </span>AnswerId {

@@ -748,7 +748,7 @@
 /// [`User`]: super::user::User
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Copy, Clone, Default, Debug, Eq, Hash, PartialEq)]
-#[repr(packed)]
+#[repr(Rust, packed)]
 </span><span class="kw">pub struct </span>Permissions(u64);
 
 <span class="macro">generate_permissions!</span> {

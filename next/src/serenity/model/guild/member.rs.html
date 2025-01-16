@@ -585,7 +585,8 @@
 <a href="#584" id="584">584</a>
 <a href="#585" id="585">585</a>
 <a href="#586" id="586">586</a>
-<a href="#587" id="587">587</a></pre></div><pre class="rust"><code><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
+<a href="#587" id="587">587</a>
+<a href="#588" id="588">588</a></pre></div><pre class="rust"><code><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
 </span><span class="kw">use </span>std::cmp::Reverse;
 <span class="kw">use </span>std::fmt;
 
@@ -810,6 +811,7 @@
 
     <span class="doccomment">/// Returns the DiscordTag of a Member, taking possible nickname into account.
     </span><span class="attr">#[must_use]
+    #[deprecated = <span class="string">"Use User::tag to get the correct Discord username format or Self::display_name for the name that users will see."</span>]
     </span><span class="kw">pub fn </span>distinct(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(discriminator) = <span class="self">self</span>.user.discriminator {
             <span class="macro">format!</span>(<span class="string">"{}#{:04}"</span>, <span class="self">self</span>.display_name(), discriminator.get())

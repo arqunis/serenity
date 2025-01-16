@@ -341,7 +341,10 @@
 <a href="#340" id="340">340</a>
 <a href="#341" id="341">341</a>
 <a href="#342" id="342">342</a>
-<a href="#343" id="343">343</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::borrow::Cow;
+<a href="#343" id="343">343</a>
+<a href="#344" id="344">344</a>
+<a href="#345" id="345">345</a>
+<a href="#346" id="346">346</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::borrow::Cow;
 
 <span class="kw">use </span><span class="kw">crate</span>::model::guild::Guild;
 <span class="kw">use </span><span class="kw">crate</span>::model::mention::Mention;
@@ -377,6 +380,7 @@
     ///
     /// This option is ignored if the username is a next-gen username, and
     /// therefore does not have a discriminator.
+    </span><span class="attr">#[cfg_attr(not(ignore_serenity_deprecated), deprecated = <span class="string">"Discriminators are deprecated on the discord side, and this doesn't reflect message rendering behaviour"</span>)]
     </span><span class="kw">pub </span>show_discriminator: bool,
 }
 
@@ -519,7 +523,9 @@
         Mention::User(id) =&gt; {
             <span class="kw">if let </span><span class="prelude-val">Some</span>(member) = guild.members.get(<span class="kw-2">&amp;</span>id) {
                 <span class="kw">if </span>options.get_show_discriminator() {
-                    <span class="macro">format!</span>(<span class="string">"@{}"</span>, member.distinct()).into()
+                    <span class="attr">#[expect(deprecated)]
+                    </span><span class="kw">let </span>name = member.distinct();
+                    <span class="macro">format!</span>(<span class="string">"@{name}"</span>).into()
                 } <span class="kw">else </span>{
                     <span class="macro">format!</span>(<span class="string">"@{}"</span>, member.display_name()).into()
                 }

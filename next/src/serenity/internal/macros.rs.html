@@ -342,7 +342,7 @@
         }
     ) =&gt; {
         $(<span class="attr">#[<span class="macro-nonterminal">$outer</span>]</span>)*
-        <span class="attr">#[repr(packed)]
+        <span class="attr">#[repr(Rust, packed)]
         </span><span class="macro-nonterminal">$vis </span><span class="kw">struct </span><span class="macro-nonterminal">$BitFlags</span>(<span class="macro-nonterminal">$T</span>);
 
         <span class="macro">bitflags::bitflags!</span> {

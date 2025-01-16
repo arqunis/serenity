@@ -539,7 +539,7 @@
     // but this not doable as `u32::from` is not a const fn.
     </span><span class="attr">#[must_use]
     </span><span class="kw">pub const fn </span>from_rgb(red: u8, green: u8, blue: u8) -&gt; Colour {
-        Colour((red <span class="kw">as </span>u32) &lt;&lt; <span class="number">16 </span>| (green <span class="kw">as </span>u32) &lt;&lt; <span class="number">8 </span>| blue <span class="kw">as </span>u32)
+        Colour(((red <span class="kw">as </span>u32) &lt;&lt; <span class="number">16</span>) | ((green <span class="kw">as </span>u32) &lt;&lt; <span class="number">8</span>) | blue <span class="kw">as </span>u32)
     }
 
     <span class="doccomment">/// Returns the red RGB component of this Colour.
