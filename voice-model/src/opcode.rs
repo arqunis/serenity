@@ -57,7 +57,7 @@ pub enum Opcode {
     DavePrepareEpoch = 24,
     /// DAVE: Provides the external sender package for MLS group initialization.
     DaveMlsExternalSender = 25,
-    /// DAVE: Sends the key package fir MLS group participation.
+    /// DAVE: Sends the key package for MLS group participation.
     DaveMlsKeyPackage = 26,
     /// DAVE: Provides proposals for group member changes (add/remove).
     DaveMlsProposals = 27,
