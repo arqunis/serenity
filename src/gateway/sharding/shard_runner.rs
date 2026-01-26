@@ -320,6 +320,9 @@ impl ShardRunner {
                         .chunk_guild(guild_id, limit, presences, filter, nonce.as_deref())
                         .await
                 },
+                ShardRunnerMessage::SoundboardSounds {
+                    guild_ids,
+                } => self.shard.request_soundboard_sounds(&guild_ids).await,
                 ShardRunnerMessage::SetPresence {
                     activity,
                     status,
@@ -521,6 +524,13 @@ pub enum ShardRunnerMessage {
         ///
         /// [`GuildMembersChunkEvent`]: crate::model::event::GuildMembersChunkEvent
         nonce: Option<String>,
+    },
+    /// Indicates that the client is to send a request soundboard sounds message.
+    SoundboardSounds {
+        /// The IDs of the [`Guild`] to request soundboard sounds from.
+        ///
+        /// [`Guild`]: crate::model::guild::Guild
+        guild_ids: Vec<GuildId>,
     },
     /// Indicates that the client is to update the shard's presence.
     ///

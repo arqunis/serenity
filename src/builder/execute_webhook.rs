@@ -73,6 +73,8 @@ pub struct ExecuteWebhook<'a> {
     flags: Option<MessageFlags>,
     #[serde(skip_serializing_if = "Option::is_none")]
     thread_name: Option<Cow<'a, str>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    applied_tags: Option<Cow<'a, [ForumTagId]>>,
     attachments: EditAttachments<'a>,
 
     #[serde(skip)]
@@ -324,6 +326,12 @@ impl<'a> ExecuteWebhook<'a> {
     /// Name of thread to create (requires the webhook channel to be a forum channel)
     pub fn thread_name(mut self, thread_name: Cow<'a, str>) -> Self {
         self.thread_name = Some(thread_name);
+        self
+    }
+
+    /// Tags for thread being created (requires the webhook channel to be a forum channel)
+    pub fn applied_tags(mut self, applied_tags: Cow<'a, [ForumTagId]>) -> Self {
+        self.applied_tags = Some(applied_tags);
         self
     }
 

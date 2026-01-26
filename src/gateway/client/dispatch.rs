@@ -348,6 +348,21 @@ fn update_cache_with_event(ctx: &Context, event: Event) -> FullEvent {
         Event::Resumed(event) => FullEvent::Resume {
             event,
         },
+        Event::SoundboardSounds(event) => FullEvent::SoundboardSounds {
+            event,
+        },
+        Event::SoundboardSoundCreate(event) => FullEvent::SoundboardSoundCreate {
+            event,
+        },
+        Event::SoundboardSoundUpdate(event) => FullEvent::SoundboardSoundUpdate {
+            event,
+        },
+        Event::SoundboardSoundsUpdate(event) => FullEvent::SoundboardSoundsUpdate {
+            event,
+        },
+        Event::SoundboardSoundDelete(event) => FullEvent::SoundboardSoundDelete {
+            event,
+        },
         Event::TypingStart(event) => FullEvent::TypingStart {
             event,
         },

@@ -279,6 +279,23 @@ full_event! {
     /// Provides the context of the shard and the event information about the update.
     ShardStageUpdate { event: ShardStageUpdateEvent };
 
+    /// Dispatched when the data for soundboard sounds is requested.
+    ///
+    /// Provides the guild's id and the data.
+    SoundboardSounds { event: SoundboardSoundsEvent };
+
+    /// Dispatched when a soundboard sound is created.
+    SoundboardSoundCreate { event: SoundboardSoundCreateEvent };
+
+    /// Dispatched when a soundboard sound is updated.
+    SoundboardSoundUpdate { event: SoundboardSoundUpdateEvent };
+
+    /// Dispatched when multiple soundboard sounds at once are updated.
+    SoundboardSoundsUpdate { event: SoundboardSoundsUpdateEvent };
+
+    /// Dispatched when a soundboard sound is deleted.
+    SoundboardSoundDelete { event: SoundboardSoundDeleteEvent };
+
     /// Dispatched when a user starts typing.
     TypingStart { event: TypingStartEvent };
 

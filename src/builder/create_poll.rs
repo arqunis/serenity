@@ -35,7 +35,7 @@ struct CreatePollMedia<'a> {
 pub struct CreatePoll<'a, Stage: Sealed> {
     question: CreatePollMedia<'a>,
     answers: Cow<'a, [CreatePollAnswer<'a>]>,
-    duration: u8,
+    duration: u16,
     allow_multiselect: bool,
     layout_type: Option<PollLayoutType>,
 
@@ -53,7 +53,7 @@ impl Default for CreatePoll<'_, NeedsQuestion> {
                 text: Cow::default(),
             },
             answers: Cow::default(),
-            duration: u8::default(),
+            duration: u16::default(),
             allow_multiselect: false,
             layout_type: None,
 
@@ -120,14 +120,15 @@ impl<'a> CreatePoll<'a, NeedsAnswers> {
 impl<'a> CreatePoll<'a, NeedsDuration> {
     /// Sets the duration for the Poll to run for.
     ///
-    /// This must be less than a week, and will be rounded to hours towards zero.
+    /// This must be at most 32 days, and will be rounded to hours towards zero.
     pub fn duration(self, duration: std::time::Duration) -> CreatePoll<'a, Ready> {
+        const DAYS_32: u16 = 768;
         let hours = duration.as_secs() / 3600;
 
         CreatePoll {
             question: self.question,
             answers: self.answers,
-            duration: hours.try_into().unwrap_or(168),
+            duration: hours.try_into().unwrap_or(DAYS_32),
             allow_multiselect: self.allow_multiselect,
             layout_type: self.layout_type,
             _stage: Ready,

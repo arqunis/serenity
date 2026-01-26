@@ -408,9 +408,7 @@ impl EventHandler for Handler {
             },
             FullEvent::ReactionRemoveEmoji {
                 removed_reactions, ..
-            } => {
-                println!("Got ReactionRemoveEmoji event: {removed_reactions:?}")
-            },
+            } => println!("Got ReactionRemoveEmoji event: {removed_reactions:?}"),
             _ => {},
         }
     }

@@ -2,6 +2,7 @@
 
 use std::borrow::Cow;
 use std::cell::Cell;
+use std::collections::HashMap;
 use std::sync::atomic::{AtomicU64, Ordering};
 
 use arrayvec::ArrayVec;
@@ -3095,6 +3096,28 @@ impl Http {
         .await
     }
 
+    /// For a one-time purchase consumable SKU (of kind [`Consumable`]), marks the entitlement as
+    /// consumed.
+    ///
+    /// The entitlement will have its `consumed` field set to `true` when fetched using
+    /// [`Self::get_entitlements`].
+    ///
+    /// [`Consumable`]: SkuKind::Consumable
+    pub async fn consume_entitlement(&self, entitlement_id: EntitlementId) -> Result<()> {
+        self.wind(Request {
+            body: None,
+            multipart: None,
+            headers: None,
+            method: LightMethod::Post,
+            route: Route::ConsumeEntitlement {
+                application_id: self.try_application_id()?,
+                entitlement_id,
+            },
+            params: None,
+        })
+        .await
+    }
+
     #[expect(clippy::too_many_arguments)]
     /// Gets all entitlements for the current app, active and expired.
     pub async fn get_entitlements(
@@ -3527,6 +3550,27 @@ impl Http {
         if let Some(map) = value.as_object_mut() {
             map.insert("guild_id".to_string(), guild_id.get().into());
         }
+
+        from_value(value).map_err(From::from)
+    }
+
+    /// Retrieves a map of role IDs with total members each. Does not include `everyone` role.
+    pub async fn get_guild_role_member_counts(
+        &self,
+        guild_id: GuildId,
+    ) -> Result<HashMap<RoleId, u32>> {
+        let value: Value = self
+            .fire(Request {
+                body: None,
+                multipart: None,
+                headers: None,
+                method: LightMethod::Get,
+                route: Route::GuildRoleMemberCounts {
+                    guild_id,
+                },
+                params: None,
+            })
+            .await?;
 
         from_value(value).map_err(From::from)
     }

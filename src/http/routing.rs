@@ -313,6 +313,10 @@ routes! ('a, {
     api!("/guilds/{}/roles", guild_id),
     Some(RatelimitingKind::PathAndId(GenericId::new(guild_id.get())));
 
+    GuildRoleMemberCounts { guild_id: GuildId },
+    api!("/guilds/{}/roles/member-counts", guild_id),
+    Some(RatelimitingKind::PathAndId(GenericId::new(guild_id.get())));
+
     GuildScheduledEvent { guild_id: GuildId, event_id: ScheduledEventId },
     api!("/guilds/{}/scheduled-events/{}", guild_id, event_id),
     Some(RatelimitingKind::PathAndId(GenericId::new(guild_id.get())));
@@ -523,6 +527,10 @@ routes! ('a, {
 
     Entitlement { application_id: ApplicationId, entitlement_id: EntitlementId },
     api!("/applications/{}/entitlements/{}", application_id, entitlement_id),
+    Some(RatelimitingKind::PathAndId(GenericId::new(application_id.get())));
+
+    ConsumeEntitlement { application_id: ApplicationId, entitlement_id: EntitlementId },
+    api!("/applications/{}/entitlements/{}/consume", application_id, entitlement_id),
     Some(RatelimitingKind::PathAndId(GenericId::new(application_id.get())));
 
     Entitlements { application_id: ApplicationId },
