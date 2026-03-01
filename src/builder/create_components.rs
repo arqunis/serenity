@@ -1057,7 +1057,13 @@ impl Serialize for CreateSelectMenuDefault {
     }
 }
 
-/// Discord docs: [String Select](https://docs.discord.com/developers/components/reference#string-select), [User Select](https://docs.discord.com/developers/components/reference#user-select), [Role Select](https://docs.discord.com/developers/components/reference#role-select), [Mentionable Select](https://docs.discord.com/developers/components/reference#mentionable-select), [Channel Select](https://docs.discord.com/developers/components/reference#channel-select).
+/// Discord docs: [String Select], [User Select], [Role Select], [Mentionable Select], [Channel Select].
+///
+/// [String Select]: https://docs.discord.com/developers/components/reference#string-select
+/// [User Select]: https://docs.discord.com/developers/components/reference#user-select
+/// [Role Select]: https://docs.discord.com/developers/components/reference#role-select
+/// [Mentionable Select]: https://docs.discord.com/developers/components/reference#mentionable-select
+/// [Channel Select]: https://docs.discord.com/developers/components/reference#channel-select
 #[derive(Clone, Debug)]
 pub enum CreateSelectMenuKind<'a> {
     String {
@@ -1280,7 +1286,7 @@ impl<'a> CreateSelectMenuOption<'a> {
 
 /// A builder for creating an input text component in a modal
 ///
-/// [Discord docs](https://docs.discord.com/developers/components/reference#text-input-text-input-structure).
+/// [Discord docs](https://docs.discord.com/developers/components/reference#text-input).
 #[derive(Clone, Debug, Serialize)]
 #[must_use]
 pub struct CreateInputText<'a> {

@@ -323,8 +323,8 @@ impl<'a> CreateCommandOption<'a> {
 /// [`Command`]: crate::model::application::Command
 ///
 /// Discord docs:
-/// - [global command](https://docs.discord.com/developers/interactions/application-commands#create-global-application-command-json-params)
-/// - [guild command](https://docs.discord.com/developers/interactions/application-commands#create-guild-application-command-json-params)
+/// - [global command](https://docs.discord.com/developers/interactions/application-commands#create-global-application-command)
+/// - [guild command](https://docs.discord.com/developers/interactions/application-commands#create-guild-application-command)
 #[derive(Clone, Debug, Serialize)]
 #[must_use]
 pub struct CreateCommand<'a> {

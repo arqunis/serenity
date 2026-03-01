@@ -378,7 +378,6 @@ pub struct AuditLogEntry {
 }
 
 /// [Discord docs](https://docs.discord.com/developers/resources/audit-log#audit-log-entry-object-optional-audit-entry-info).
-// TODO: should be renamed to a less ambiguous name
 #[cfg_attr(feature = "typesize", derive(typesize::derive::TypeSize))]
 #[derive(Debug, Deserialize, Serialize, Clone)]
 #[non_exhaustive]

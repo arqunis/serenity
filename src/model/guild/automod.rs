@@ -13,7 +13,6 @@ use crate::model::prelude::*;
 /// Configured auto moderation rule.
 ///
 /// [Discord docs](https://docs.discord.com/developers/resources/auto-moderation#auto-moderation-rule-object).
-// TODO: should be renamed to a less ambiguous name
 #[cfg_attr(feature = "typesize", derive(typesize::derive::TypeSize))]
 #[derive(Clone, Debug, PartialEq, Eq, Deserialize, Serialize)]
 #[non_exhaustive]

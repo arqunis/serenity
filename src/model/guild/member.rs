@@ -453,7 +453,6 @@ impl ExtractKey<UserId> for Member {
 /// subset specification unknown (field type "partial member" is used in
 /// [link](https://docs.discord.com/developers/events/gateway-events#message-create),
 /// [link](https://docs.discord.com/developers/resources/invite#invite-stage-instance-object),
-/// [link](https://docs.discord.com/developers/events/gateway-events#message-create),
 /// [link](https://docs.discord.com/developers/interactions/receiving-and-responding#interaction-object-resolved-data-structure),
 /// [link](https://docs.discord.com/developers/interactions/receiving-and-responding#message-interaction-object))
 #[bool_to_bitflags::bool_to_bitflags]

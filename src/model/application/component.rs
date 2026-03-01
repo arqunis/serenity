@@ -650,7 +650,7 @@ impl Serialize for ButtonKind {
 
 /// A button component.
 ///
-/// [Discord docs](https://docs.discord.com/developers/components/reference#button-button-structure).
+/// [Discord docs](https://docs.discord.com/developers/components/reference#button).
 #[cfg_attr(feature = "typesize", derive(typesize::derive::TypeSize))]
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq)]
 #[non_exhaustive]
@@ -689,7 +689,13 @@ enum_number! {
 
 /// A select menu component.
 ///
-/// Discord docs: [String Select](https://docs.discord.com/developers/components/reference#string-select), [User Select](https://docs.discord.com/developers/components/reference#user-select), [Role Select](https://docs.discord.com/developers/components/reference#role-select), [Mentionable Select](https://docs.discord.com/developers/components/reference#mentionable-select), [Channel Select](https://docs.discord.com/developers/components/reference#channel-select).
+/// Discord docs: [String Select], [User Select], [Role Select], [Mentionable Select], [Channel Select].
+///
+/// [String Select]: https://docs.discord.com/developers/components/reference#string-select
+/// [User Select]: https://docs.discord.com/developers/components/reference#user-select
+/// [Role Select]: https://docs.discord.com/developers/components/reference#role-select
+/// [Mentionable Select]: https://docs.discord.com/developers/components/reference#mentionable-select
+/// [Channel Select]: https://docs.discord.com/developers/components/reference#channel-select
 #[cfg_attr(feature = "typesize", derive(typesize::derive::TypeSize))]
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[non_exhaustive]
@@ -748,7 +754,7 @@ pub struct SelectMenuOption {
 
 /// An input text component for modal interactions
 ///
-/// [Discord docs](https://docs.discord.com/developers/components/reference#text-input-text-input-structure).
+/// [Discord docs](https://docs.discord.com/developers/components/reference#text-input).
 #[cfg_attr(feature = "typesize", derive(typesize::derive::TypeSize))]
 #[derive(Clone, Debug, PartialEq, Deserialize, Serialize)]
 #[non_exhaustive]
